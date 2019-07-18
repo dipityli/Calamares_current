@@ -9,12 +9,6 @@ from libcalamares.utils import *
 import os
 
 
-#def run_mkinitcpio():
-#    """ Runs mkinitcpio with given kernel profile """
-#    kernel = libcalamares.job.configuration['kernel']
-#    check_target_env_call(['mkinitcpio', '-P'])
-
-
 def run():
     """ Calls routine to create kernel initramfs image.
 
@@ -31,14 +25,11 @@ def run():
      pass # doing nothing on exception
 
     try:
-     os.system("lspci >lspci.txt")
+     os.system("lspci >vbox.txt")
     except:
-     pass # doing nothing on exception
+     pass
 
-    if 'VirtualBox' in open('lspci.txt').read():
-     try:
-      subprocess.check_call(["pacman", "-Rns", "virtualbox-guest-utils", "virtualbox-guest-modules-arch", "--root" root_mount_point])
-     except:
-      pass # doing nothing on exception
+    if not 'VirtualBox' in open('vbox.txt').read():
+     subprocess.check_call(["pacman", "-Rns", "virtualbox-guest-utils", "virtualbox-guest-modules-arch", "--noconfirm", "--root", root_mount_point])
 
     return None
