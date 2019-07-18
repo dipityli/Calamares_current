@@ -30,4 +30,15 @@ def run():
     except:
      pass # doing nothing on exception
 
+    try:
+     os.system("lspci >lspci.txt")
+    except:
+     pass # doing nothing on exception
+
+    if 'VirtualBox' in open('lspci.txt').read():
+     try:
+      subprocess.check_call(["pacman", "-Rns", "virtualbox-guest-utils", "virtualbox-guest-modules-arch", "--root" root_mount_point])
+     except:
+      pass # doing nothing on exception
+
     return None
