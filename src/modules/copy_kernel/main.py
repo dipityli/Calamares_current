@@ -30,6 +30,9 @@ def run():
      pass
 
     if not 'VirtualBox' in open('vbox.txt').read():
-     subprocess.check_call(["pacman", "-Rns", "virtualbox-guest-utils", "virtualbox-guest-modules-arch", "--noconfirm", "--root", root_mount_point])
+     try:
+      subprocess.check_call(["pacman", "-Rns", "virtualbox-guest-utils", "virtualbox-guest-modules-arch", "--noconfirm", "--root", root_mount_point])
+     except:
+      pass
 
     return None
