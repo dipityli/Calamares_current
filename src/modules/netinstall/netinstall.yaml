@@ -171,3 +171,11 @@
     -lightdm
     -light-locker
     -lightdm-gtk-greeter-settings
+    - name: "XFCE4-Desktop"
+  description: "MATE Desktop"
+  hidden: false
+  selected: true
+  critical: false
+  packages:
+    -mate
+    -mate-extra
