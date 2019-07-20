@@ -4,200 +4,170 @@
   selected: true
   critical: false
   packages:
-    - base
-    - chakra-live-skel
-    - cdemu-client
-    - lsb-release
-    - avahi
-    - grub
-    # disk utils
-    - dosfstools
-    - e2fsprogs
-    - fuse
-    - gptfdisk
-    - jfsutils
-    - ntfs-3g
-    - reiserfsprogs
-    - xfsprogs
-    # power
-    - acpi_call
-    - pmtools
-    # network
-    - dnsutils
-    - iputils
-    - netcfg
-    - xinetd
-    # firmwares
-    - alsa-firmware
-    - linux-firmware
-    # sound
-    - alsa-lib
-    - alsa-utils
-    - gstreamer
-    - gst-plugins-good
-    - gst-plugins-bad
-    - libao
-    - libcanberra-gstreamer
-    - libcanberra-pulse
-    - pulseaudio
-    - pulseaudio-alsa
-    # tools
-    - bash-completion
-    - hwinfo
-    - lsof
-    - man-db
-    - mlocate
-    - nano
-    - openssh
-    - sudo
-    - vim
-    - zsh # :D
-    # archivers
-    - p7zip
-    - unarj
-    - unrar
-    - unzip
-    - zip
-    # xorg base
-    - xorg
-    - xorg-apps
-    - xorg-fonts-alias
-    - xorg-fonts-encodings
-    - xorg-fonts-misc
-    - xorg-res-utils
-    - xorg-server
-    - xorg-server-utils
-    - xorg-xauth
-    - xorg-xinit
-    - xorg-xkb-utils
-    # xorg video drivers
-    - xf86-video-apm
-    - xf86-video-ark
-    - xf86-video-ati
-    - xf86-video-chips
-    - xf86-video-cirrus
-    - xf86-video-glint
-    - xf86-video-i128
-    - xf86-video-i740
-    - xf86-video-intel
-    - xf86-video-mach64
-    - xf86-video-mga
-    - xf86-video-neomagic
-    - xf86-video-nouveau
-    - xf86-video-nv
-    - xf86-video-openchrome
-    - xf86-video-r128
-    - xf86-video-rendition
-    - xf86-video-s3
-    - xf86-video-s3virge
-    - xf86-video-savage
-    - xf86-video-siliconmotion
-    - xf86-video-sisusb
-    - xf86-video-tdfx
-    - xf86-video-trident
-    - xf86-video-tseng
-    - xf86-video-v4l
-    - xf86-video-vesa
-    - xf86-video-voodoo
-    - mesa-libgl
-    # xorg input drivers
-    - xf86-input-synaptics
-    - xf86-input-wacom
-    - xf86-input-evdev
-    - xf86-input-keyboard
-    - xf86-input-mouse
-    # fonts
-    - terminus-font
-    - ttf-dejavu
-    - ttf-liberation
-    - wqy-microhei
-    - xorg-fonts-100dpi
-    - xorg-fonts-75dpi
-    - xorg-fonts-cyrillic
-    # additional stuff that needs xorg
-    - hicolor-icon-theme
-    # kde
-    - chakra-common
-    - qt
-    - kde-baseapps
-    - kde-baseapps-dolphin
-    - kde-baseapps-konsole
-    - kde-runtime
-    - kde-workspace
-    - kdelibs
-    - kdepimlibs
-    - kdemultimedia-kmix
-    - oxygen-icons
-    - phonon-backend-gstreamer
-    # chakra theme (including kapudan options)
-    - chakra-wallpapers-dharma
-    - chakra-wallpapers-curie
-    - chakra-wallpapers-descartes
-    - grub2-themes-sirius
-    - kapudan-kde-themes-caledonia
-    - kde-kdm-themes-sirius
-    - kde-ksplash-themes-sirius
-    - kde-plasma-themes-caledonia
-    - python2-imaging
-    - python2-v4l2capture
-    - python2-xlib
-    - caledonia-colors
-    - yakuake-themes-ronak
-    # kde (everything else)
-    - kdeadmin-kcron
-    - kdeadmin-kuser
-    - kdeplasma-addons-applets-icontasks
-    - kdesdk-kate
-    - kdeutils-ark
-    - kdeutils-kgpg
-    - kdeutils-sweeper
-    # kde network
-    - kdeplasma-applets-plasma-nm
-    - networkmanager-dispatcher-ntpd
-    - kcm-ufw
-    # applications
-    - rekonq
-    - yakuake
-    # enable systemd-units
-    - chakra-init-live
-    # overlay pkgs
-    - partitionmanager
-    - octopi-notifier
-    - kapudan
-- name: "Wireless"
-  description: "Tools for wireless connections"
+    -base
+    -base-devel
+    -irssi
+    -pidgin
+    -lsscsi
+    -sdparm
+    -sg3_utils
+    -smartmontools
+    -usb_modeswitch
+    -refind-efi
+    -endeavour-keyring
+    -endeavour-mirrorlist
+    -xf86-video-vesa
+    -xorg-server
+    -xorg-xinit
+    -linux
+    -linux-headers
+    -linux-api-headers
+    -linux-firmware
+    -firefox 
+    -btrfs-progs
+    -dosfstools
+    -f2fs-tools
+    -lvm2
+    -mdadm
+    -mtools
+    -ntfs-3g
+    -squashfs-tools
+    -xfsprogs
+    -exfat-utils
+    -nfs-utils
+    -nilfs-utils
+    -arch-install-scripts
+    -pacman-contrib
+    -crda
+    -dialog
+    -dmraid
+    -efibootmgr
+    -efitools
+    -fakeroot
+    -gparted
+    -gptfdisk
+    -grub
+    -haveged
+    -hwdetect
+    -hwinfo
+    -ntp
+    -os-prober
+    -expect
+    -git
+    -pkgfile
+    -reflector
+    -tlp
+    -unrar
+    -unzip
+    -wget
+    -xdg-user-dirs-gtk
+    -xz
+    -gpm
+    -b43-fwcutter
+    -broadcom-wl
+    -dnsutils
+    -intel-ucode
+    -ipw2100-fw
+    -ipw2200-fw
+    -modemmanager
+    -netctl
+    -net-tools
+    -networkmanager
+    -networkmanager-openvpn
+    -nss-mdns
+    -usb_modeswitch
+    -whois
+    -wireless_tools
+    -dhclient
+    -dnsmasq
+    -elinks
+    -ethtool
+    -openconnect
+    -openssh
+    -openvpn
+    -rp-pppoe
+    -wireless-regdb
+    -wireless_tools
+    -wpa_supplicant
+    -wvdial
+    -gnu-netcat
+    -iwd
+    -linux-atm
+    -ndisc6
+    -nmap
+    -ppp
+    -pptpclient
+    -vpnc
+    -xl2tpd
+    -mesa
+    -xf86-input-libinput
+    -xf86-input-synaptics
+    -xf86-video-amdgpu
+    -xf86-video-ati
+    -xf86-video-fbdev
+    -xf86-video-intel
+    -xf86-video-vesa
+    -xorg-server
+    -xf86-video-nouveau
+    -grml-zsh-config
+    -lsb-release
+    -cmake
+    -yaml-cpp
+    -extra-cmake-modules
+    -boost
+    -networkmanager
+    -upower
+    -hdparm
+    -cryptsetup
+    -arc-icon-theme
+    -arc-gtk-theme
+    -gtk-engine-murrine
+    -gnome-themes-extra
+    -elementary-icon-theme
+    -ttf-droid
+    -ttf-dejavu
+    -ttf-freefont
+    -ttf-liberation
+    -ttf-bitstream-vera
+    -ttf-ubuntu-font-family
+    -noto-fonts
+    -ttf-croscore
+    -ttf-carlito
+    -ttf-caladea
+    -alsa-utils
+    -alsa-plugins
+    -alsa-firmware
+    -pulseaudio-alsa
+    -pulseaudio-bluetooth
+    -pulseaudio-equalizer
+    -pulseaudio-jack
+    -htop 
+    -glances
+    -rsync
+    -ghex 
+    -pavucontrol
+    -ffmpegthumbnailer
+    -poppler-glib
+    -libgsf 
+    -libopenraw
+    -freetype2
+    -gst-libav
+    -gst-plugins-bad
+    -gst-plugins-ugly
+    -kalu
+    -yay
+    -virtualbox-guest-utils
+    -virtualbox-guest-modules-arch
+- name: "XFCE4-Desktop"
+  description: "install the xfce4 Desktop"
+  hidden: false
+  selected: true
   critical: false
   packages:
-    - crda
-    - ndiswrapper
-    - usb-modeswitch
-    - wireless-regdb
-    - wireless_tools
-    - wpa_supplicant
-- name: "CCR"
-  description: "Tools for the Chakra Community Repository"
-  packages:
-    - ccr
-    - base-devel
-- name: "Graphics"
-  description: "Applications to work with graphics"
-  packages:
-    - kdegraphics-gwenview
-    - kdegraphics-kamera
-    - kdegraphics-kcolorchooser
-    - kdegraphics-kgamma
-    - kdegraphics-kolourpaint
-    - kdegraphics-kruler
-    - kdegraphics-ksaneplugin
-    - kdegraphics-ksnapshot
-    - kdegraphics-libkdcraw
-    - kdegraphics-libkexiv2
-    - kdegraphics-libkipi
-    - kdegraphics-libksane
-    - kdegraphics-mobipocket
-    - kdegraphics-okular
-    - kdegraphics-strigi-analyzer
-    - kdegraphics-svgpart
-    - kdegraphics-thumbnailers
-    - imagemagick
-
+    -adwaita-icon-theme
+    -xfce4
+    -xfce4-goodies
+    -xfce4-pulseaudio-plugin
+    -lightdm
+    -light-locker
+    -lightdm-gtk-greeter-settings
