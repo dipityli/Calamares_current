@@ -1,7 +1,7 @@
 - name: "XFCE4-Desktop"
   description: "install the xfce4 Desktop"
   hidden: false
-  selected: true
+  selected: false
   critical: false
   packages:
     -adwaita-icon-theme
@@ -14,7 +14,7 @@
 - name: "MATE-Desktop"
   description: "MATE Desktop"
   hidden: false
-  selected: true
+  selected: false
   critical: false
   packages:
     -mate
