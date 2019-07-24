@@ -47,7 +47,7 @@ requirements:
         # - storage
         - ram
         # - root
-        # - internet
+        - internet
 # GeoIP checking
 #
 # This can be used to pre-select a language based on the country
