@@ -41,6 +41,7 @@ operations:
     - hwinfo
     - python
     - solid
+    - mlocate
     - ttf-dejavu
     - gnu-free-fonts
     - ttf-liberation
