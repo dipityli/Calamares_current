@@ -21,6 +21,7 @@ operations:
     - xf86-video-fbdev
     - xf86-video-intel
     - xf86-video-vesa
+    - xorg-xkill
     - package: xf86-video-nouveau
       pre-script: touch /tmp/installing-xf86-video-nouveau
       post-script: rm /tmp/installing-xf86-video-nouveau
