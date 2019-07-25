@@ -77,7 +77,6 @@ operations:
     - package: kalu
       pre-script: touch /tmp/installing-kalu
       post-script: rm /tmp/installing-kalu
-    - yay
     - virtualbox-guest-utils
     - virtualbox-guest-modules-arch
     - systemd-ui
