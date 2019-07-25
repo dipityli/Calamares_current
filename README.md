@@ -1,7 +1,7 @@
 ### Calamares: Distribution-Independent Installer Framework
 ---------
 ### Modified to install EndeavourOS offline/online
-[![GitHub Maintainer} (https://avatars0.githubusercontent.com/u/52355429?s=200&v=4)](https://github.com/endeavouros-teams)
+[![GitHub team] (https://i1.wp.com/endeavouros.com/wp-content/uploads/2019/06/cropped-endeavour-logo-dark-background-2.png)](https://github.com/endeavouros-teams)
 [![GitHub release](https://img.shields.io/github/release/calamares/calamares.svg)](https://github.com/calamares/calamares/releases)
 [![Travis Build Status](https://travis-ci.org/calamares/calamares.svg?branch=master)](https://travis-ci.org/calamares/calamares)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5389/badge.svg)](https://scan.coverity.com/projects/5389)
