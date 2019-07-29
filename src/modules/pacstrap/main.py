@@ -315,12 +315,36 @@ def run():
     """
     root_mount_point = globalstorage.value("rootMountPoint")
 
+    # Update databse, step by step
+    #sudo haveged -w 1024; sudo pacman-key --init; sudo pacman-key --populate; sudo pacman-key --refresh-keys; sudo pkill haveged; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak; sudo reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist; sudo pacman -Syy
+
+    # In the running iso only
+    # Necessary if running old iso version
+    subprocess.call(["haveged", "-w", "1024"])   
+    subprocess.call(["pacman-key", "--init"])   
+    subprocess.call(["pacman-key", "--populate"])   
+    subprocess.call(["pacman-key", "--refresh-keys"])   
+    subprocess.call(["pkill", "haveged"])  
+
+    # Speed up download using fastest mirrors
+    subprocess.call(["cp", "/etc/pacman.d/mirrorlist", "/etc/pacman.d/mirrorlist.bak"])  
+    subprocess.call(["reflector", "--verbose", "--age", "8", "--fastest", "128", "--latest", "64", "--number", "32", "--sort", "rate", "--save", "/etc/pacman.d/mirrorlist"])  
+    subprocess.call(["pacman", "-Sy"]) 
+
+    # Install base system + endeavouros packages
+    subprocess.call(["/usr/bin/pacstrap_endeavouros", "-c", root_mount_point, "base", "sudo", "grub", "endeavouros-keyring", "endeavouros-mirrorlist", "grub2-theme-endeavouros", "kalu", "yay"])
+
     subprocess.call(["/usr/bin/pacstrap_endeavouros", "-c", root_mount_point, "base", "sudo", "grub"])
     # -c storage downloaded packages at running system (ISO). Don't need to redownload everything in case running calamares again
-    # without sudo calamares crashes, "missing sudoers file"
-    # without grub can't install it
+    # without sudo package calamares crashes, "missing sudoers file"
+    # without grub can't install it :)
     subprocess.call(["cp", "/usr/bin/cleaner_script.sh", root_mount_point + "/usr/bin/cleaner_script.sh"])
 
+    subprocess.call(["cp", "-f", "/etc/pacman.conf", root_mount_point + "/etc"])
+
+    # Someting else to be copied?
+
+    # Interesting alternatives/addons
     #subprocess.call(["pacstrap", "-c", root_mount_point, "base", "sudo", "grub"])
     #subprocess.call(["rsync", "-a", "", root_mount_point])
     #subprocess.call(["pacman", "-Sy", "glibc", "filesystem", "base", "--noconfirm", "--root", root_mount_point, "--dbpath", "/var/lib/pacman", "-v", "-y"])
