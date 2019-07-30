@@ -315,36 +315,42 @@ def run():
     """
     root_mount_point = globalstorage.value("rootMountPoint")
 
-    # Update databse, step by step
-    #sudo haveged -w 1024; sudo pacman-key --init; sudo pacman-key --populate; sudo pacman-key --refresh-keys; sudo pkill haveged; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak; sudo reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist; sudo pacman -Syy
-
-    # In the running iso only
-    # Necessary if running old iso version
+    # Update database, step by step in the running iso only. Necessary if running old iso version
     subprocess.call(["haveged", "-w", "1024"])   
     subprocess.call(["pacman-key", "--init"])   
     subprocess.call(["pacman-key", "--populate"])   
     subprocess.call(["pacman-key", "--refresh-keys"])   
     subprocess.call(["pkill", "haveged"])  
 
+    # Commands above give us more control and remove the need to use packages module to update db and system.
+    # update_db: false
+    # update_system: false
+
     # Speed up download using fastest mirrors
-    subprocess.call(["cp", "/etc/pacman.d/mirrorlist", "/etc/pacman.d/mirrorlist.bak"])  
+    subprocess.call(["cp", "/etc/pacman.d/mirrorlist", "/etc/pacman.d/mirrorlist.bak"]) # may not need it for iso 
     subprocess.call(["reflector", "--verbose", "--age", "8", "--fastest", "128", "--latest", "64", "--number", "32", "--sort", "rate", "--save", "/etc/pacman.d/mirrorlist"])  
-    subprocess.call(["pacman", "-Sy"]) 
 
     # Install base system + endeavouros packages
-    subprocess.call(["/usr/bin/pacstrap_endeavouros", "-c", root_mount_point, "base", "sudo", "grub", "endeavouros-keyring", "endeavouros-mirrorlist", "grub2-theme-endeavouros", "kalu", "yay"])
+    # if the list of packages keeps growing may be better read list from a file
+    subprocess.call(["/usr/bin/pacstrap_endeavouros", "-c", root_mount_point, "base", "sudo", "grub", "endeavouros-keyring", "endeavouros-mirrorlist", "grub2-theme-endeavouros", "kalu", "yay", "networkmanager"])
 
-    subprocess.call(["/usr/bin/pacstrap_endeavouros", "-c", root_mount_point, "base", "sudo", "grub"])
-    # -c storage downloaded packages at running system (ISO). Don't need to redownload everything in case running calamares again
-    # without sudo package calamares crashes, "missing sudoers file"
-    # without grub can't install it :)
-    subprocess.call(["cp", "/usr/bin/cleaner_script.sh", root_mount_point + "/usr/bin/cleaner_script.sh"])
+
+    subprocess.call(["cp", "-f", "/usr/bin/cleaner_script.sh", root_mount_point + "/usr/bin"])
 
     subprocess.call(["cp", "-f", "/etc/pacman.conf", root_mount_point + "/etc"])
 
-    # Someting else to be copied?
+    # Something else to be copied?
+
+    # download config files?
 
     # Interesting alternatives/addons
+
+    #subprocess.call(["/usr/bin/pacstrap_endeavouros", "-c", root_mount_point, "base", "sudo", "grub"])
+    # -c storage downloaded packages at running system (ISO). Don't need to redownload everything in case running calamares again
+    # without sudo package calamares crashes, "missing sudoers file"
+    # without grub can't install it :)
+    #subprocess.call(["pacman", "-Sy"]) # pacstrap already syncs, so not needed
+
     #subprocess.call(["pacstrap", "-c", root_mount_point, "base", "sudo", "grub"])
     #subprocess.call(["rsync", "-a", "", root_mount_point])
     #subprocess.call(["pacman", "-Sy", "glibc", "filesystem", "base", "--noconfirm", "--root", root_mount_point, "--dbpath", "/var/lib/pacman", "-v", "-y"])

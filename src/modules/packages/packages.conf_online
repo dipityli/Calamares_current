@@ -1,12 +1,10 @@
 ---
 backend: pacman
 skip_if_no_internet: false
-update_db: true
-update_system: true
+update_db: false
+update_system: false
 operations:
 - try_install:
-    - endeavouros-keyring
-    - endeavouros-mirrorlist
     - linux-firmware
     - package: linux-firmware
       pre-script: touch /tmp/installing-linux-firmware
@@ -58,7 +56,6 @@ operations:
     - package: firefox
       pre-script: touch /tmp/installing-firefox
       post-script: rm /tmp/installing-firefox
-    - firefox-ublock-origin
     - alsa-utils
     - alsa-plugins
     - alsa-firmware
@@ -75,11 +72,6 @@ operations:
     - gst-libav
     - gst-plugins-bad
     - gst-plugins-ugly
-    - package: kalu
-      pre-script: touch /tmp/installing-kalu
-      post-script: rm /tmp/installing-kalu
     - virtualbox-guest-utils
     - virtualbox-guest-modules-arch
     - systemd-ui
-    - grub2-theme-endeavouros
-    - grub
