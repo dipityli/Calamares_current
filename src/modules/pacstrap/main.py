@@ -1,26 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <https://github.com/calamares> ===
-#
-#   Copyright 2014, Teo Mrnjavac <teo@kde.org>
-#   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
-#   Copyright 2014, Philip Müller <philm@manjaro.org>
-#   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2019, Kevin Kofler <kevin.kofler@chello.at>
-#
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
-#
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+# Originally was unpackpfs module
+# Changed by Fernando "maroto" for EndeavourOS to add pacstrap function for online install
+# Updates all keyrings, populate etc
 
 import os
 import re
@@ -29,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 
+from pathlib import Path
 from libcalamares import *
 
 import gettext
@@ -308,13 +292,7 @@ def get_supported_filesystems():
 
     return []
 
-
-def run():
-    """
-    Install base filesystem.
-    """
-    root_mount_point = globalstorage.value("rootMountPoint")
-
+def update_db():
     # Update database, step by step in the running iso only. Necessary if running old iso version
     subprocess.call(["haveged", "-w", "1024"])   
     subprocess.call(["pacman-key", "--init"])   
@@ -330,6 +308,31 @@ def run():
     subprocess.call(["cp", "/etc/pacman.d/mirrorlist", "/etc/pacman.d/mirrorlist.bak"]) # may not need it for iso 
     subprocess.call(["reflector", "--verbose", "--age", "8", "--fastest", "128", "--latest", "64", "--number", "32", "--sort", "rate", "--save", "/etc/pacman.d/mirrorlist"])  
 
+    # After the above there is no need to run cmds again in case the user tries to launch calamares a second time
+
+    try:
+        open('/tmp/run_once', 'a')
+        run_once.close()
+    except:
+        pass
+    
+
+def run():
+    """
+    Install base filesystem.
+    """
+    root_mount_point = globalstorage.value("rootMountPoint")
+
+    # created new function above to update, populate, refresh, best mirrors etc
+    
+    executed_before = Path("/tmp/run_once")
+
+    try:
+        if not executed_before.exists():
+            update_db()
+    except:
+        pass
+
     # Install base system + endeavouros packages
     # if the list of packages keeps growing may be better read list from a file
     subprocess.call(["/usr/bin/pacstrap_endeavouros", "-c", root_mount_point, "base", "sudo", "grub", "endeavouros-keyring", "endeavouros-mirrorlist", "grub2-theme-endeavouros", "kalu", "yay", "networkmanager"])
@@ -338,6 +341,8 @@ def run():
     subprocess.call(["cp", "-f", "/usr/bin/cleaner_script.sh", root_mount_point + "/usr/bin"])
 
     subprocess.call(["cp", "-f", "/etc/pacman.conf", root_mount_point + "/etc"])
+
+    subprocess.call(["cp", "-f", "/etc/os-release", root_mount_point + "/etc"])
 
     # Something else to be copied?
 
@@ -356,3 +361,4 @@ def run():
     #subprocess.call(["pacman", "-Sy", "glibc", "filesystem", "base", "--noconfirm", "--root", root_mount_point, "--dbpath", "/var/lib/pacman", "-v", "-y"])
     #pacstrap -c ${MOUNTPOINT} $(cat /home/$ISO_USER/packages_pacman.txt)
     #pacman -Sy PACKAGE -r PATH --dbpath /var/lib/pacman -v -y
+
