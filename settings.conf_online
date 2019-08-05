@@ -116,13 +116,13 @@ sequence:
 #  - plymouthcfg
   - initcpiocfg
   - initcpio
+  - removeuser
   - users
 #  - displaymanager
   - networkcfg
   - packages
   - hwclock
 #  - services-systemd
-  - removeuser
   - shellprocess
 #  - dracut
 #  - initramfs
