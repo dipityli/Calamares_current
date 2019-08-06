@@ -64,3 +64,4 @@ operations:
   - gst-plugins-bad
   - gst-plugins-ugly
   - systemd-ui
+  - efibootmgr
