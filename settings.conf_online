@@ -118,9 +118,9 @@ sequence:
   - initcpio
   - removeuser
   - users
-#  - displaymanager
   - networkcfg
   - packages
+  - displaymanager
   - hwclock
 #  - services-systemd
   - shellprocess
