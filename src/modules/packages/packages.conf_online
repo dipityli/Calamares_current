@@ -28,6 +28,9 @@ operations:
   - gvfs-smb
   - libwnck3
   - networkmanager
+  - network-manager-applet
+  - dnsmasq
+  - modemmanager
   - openssh
   - upower
   - hwinfo
@@ -45,7 +48,6 @@ operations:
   - ttf-croscore
   - ttf-carlito
   - ttf-caladea
-  - terminus-font
   - firefox
   - alsa-utils
   - alsa-plugins
