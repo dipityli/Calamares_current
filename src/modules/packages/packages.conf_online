@@ -99,5 +99,7 @@ operations:
   - gst-libav
   - gst-plugins-bad
   - gst-plugins-ugly
+  - mplayer
+  - libdvdcss
   - systemd-ui
   - efibootmgr
