@@ -26,6 +26,7 @@ operations:
   - gvfs-gphoto2
   - gvfs-nfs
   - gvfs-smb
+  - smartmontools
   - libwnck3
   - b43-fwcutter
   - broadcom-wl
