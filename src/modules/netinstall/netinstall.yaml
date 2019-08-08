@@ -1,59 +1,197 @@
 - name: "XFCE4-Desktop"
-  description: "install the xfce4 Desktop"
+  description: "XFCE4 - lightweight desktop fast and low on system resources, visually appealing and user friendly."
   hidden: false
   selected: false
   critical: false
+  post-install: systemctl -f enable lightdm
   packages:
     - adwaita-icon-theme
     - xfce4
     - xfce4-goodies
-    - xfce4-pulseaudio-plugin
-    - lightdm
-    - light-locker
-    - lightdm-gtk-greeter-settings
+    - network-manager-applet
     - galculator
+    - blueberry
     - arc-gtk-theme
     - arc-icon-theme
     - elementary-icon-theme
+    - lightdm
+    - light-locker
+    - lightdm-gtk-greeter
+    - lightdm-gtk-greeter-settings
 - name: "MATE-Desktop"
-  description: "MATE Desktop"
+  description: "MATE Desktop - the continuation of GNOME 2"
   hidden: false
   selected: false
   critical: false
+  post-install: systemctl -f enable lightdm
   packages:
     - mate
     - mate-extra
     - gnome-mpv
-    - lightdm
-    - light-locker
-    - lightdm-gtk-greeter-settings
     - arc-gtk-theme
     - arc-icon-theme
     - elementary-icon-theme
+    - network-manager-applet
+    - lightdm
+    - light-locker
+    - lightdm-gtk-greeter
+    - lightdm-gtk-greeter-settings
 - name: "KDE-Desktop"
-  description: "KDE-Plasma Desktop"
+  description: "KDE-Plasma Desktop - Simple by default, powerful when needed."
   hidden: false
   selected: false
   critical: false
+  post-install: systemctl -f enable sddm
   packages:
     - plasma
     - plasma-wayland-session
     - kde-applications
     - powerdevil
-    - sddm
-    - sddm-kcm
     - arc-kde
-    - kvantum-theme-arc
+    - kvantum-theme-arc    
+    - arc-icon-theme
 - name: "GNOME-Desktop"
-  description: "GNOME Desktop"
+  description: "GNOME Desktop - designed to put you in control and get things done. "
   hidden: false
   selected: false
   critical: false
+  post-install: systemctl -f enable gdm
   packages:
     - gnome
     - gnome-extra
     - gnome-mpv
-    - gdm
     - arc-gtk-theme
     - arc-icon-theme
     - elementary-icon-theme
+- name: "Cinnamon-Desktop"
+  description: "Cinnamon Desktop - advanced innovative features and a traditional user experience."
+  hidden: false
+  selected: false
+  critical: false
+  post-install: systemctl -f enable lightdm
+  packages:
+    - cinnamon
+    - blueberry
+    - cinnamon-translations
+    - gnome-panel
+    - metacity
+    - gnome-mpv
+    - arc-gtk-theme
+    - arc-icon-theme
+    - elementary-icon-theme
+    - lightdm
+    - light-locker
+    - lightdm-gtk-greeter
+    - lightdm-gtk-greeter-settings
+- name: "Budgie-Desktop"
+  description: "Budgie - I Tawt I Taw A Purdy Desktop"
+  hidden: false
+  selected: false
+  critical: false
+  post-install: systemctl -f enable lightdm
+  packages:
+    - budgie-desktop
+    - gnome
+    - gnome-mpv
+    - arc-gtk-theme
+    - arc-icon-theme
+    - elementary-icon-theme
+    - lightdm
+    - light-locker
+    - lightdm-gtk-greeter
+    - lightdm-gtk-greeter-settings
+- name: "Deepin-Desktop"
+  description: "Deepin Desktop - beautiful, easy to use, safe and reliable. "
+  hidden: false
+  selected: false
+  critical: false
+  post-install: systemctl -f enable lightdm
+  packages:
+    - deepin
+    - deepin-extra
+    - gnome-mpv
+    - arc-gtk-theme
+    - arc-icon-theme
+    - elementary-icon-theme
+    - lightdm
+    - lightdm-gtk-greeter
+    - light-locker
+    - lightdm-gtk-greeter-settings
+- name: "i3 Window Manager"
+  description: "i3 tiling window manager, primarily targeted at developers and advanced users. "
+  hidden: false
+  selected: false
+  critical: false
+  post-install: systemctl -f enable lightdm
+  packages:
+    - i3-wm
+    - i3-blocks
+    - i3-lock
+    - i3-status
+    - network-manager-applet
+    - arandr
+    - archlinux-xdg-menu
+    - lxappearance-gtk3
+    - ttf-font-icons
+    - rofi
+    - lightdm
+    - lightdm-gtk-greeter
+    - light-locker
+    - lightdm-gtk-greeter-settings
+- name: "Openbox"
+  description: "Openbox is a highly configurable, next generation window manager with extensive standards support."
+  hidden: false
+  selected: false
+  critical: false
+  post-install: systemctl -f enable lightdm
+  packages:
+    - openbox
+    - obconf
+    - lxappearance-obconf
+    - lxinput
+    - lxrandr
+    - arandr
+    - menumaker
+    - archlinux-xdg-menu
+    - lightdm
+    - lightdm-gtk-greeter
+    - light-locker
+    - lightdm-gtk-greeter-settings
+- name: "Base"
+  description: "A base system without a Desktop, mainly to install Desktop Environment on you own. "
+  hidden: false
+  selected: false
+  critical: false
+  packages:
+    - base-devel
+- name: "Printing-Support"
+  description: "Support for printing (Cups)"
+  hidden: false
+  selected: false
+  critical: false
+  post-install: systemctl -f enable org.cups.cupsd.socket avahi-daemon.service
+  packages:
+    - cups 
+    - cups-filters 
+    - cups-pdf 
+    - ghostscript 
+    - gsfonts 
+    - foomatic-db-engine
+    - foomatic-db 
+    - foomatic-db-ppds 
+    - foomatic-db-nonfree 
+    - foomatic-db-nonfree-ppds 
+    - gutenprint 
+    - foomatic-db-gutenprint-ppds 
+    - system-config-printer
+    - hplip
+    - splix
+- name: "AUR-Support"
+  description: "Adding support to build packages from AUR (Arch User Repository)"
+  description: "**DISCLAIMER:** AUR packages are user produced content. Any use of the provided files is at your own risk!"
+  hidden: false
+  selected: false
+  critical: false
+  packages:
+    - yay
+    - base-devel
