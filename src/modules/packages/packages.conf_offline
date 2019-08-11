@@ -160,8 +160,7 @@ operations:
   - qt5-webengine
   - kwidgetsaddons
   - kpmcore
-  - kdbusaddons 
-  - partitionmanager
+  - kdbusaddons
   - kservice
   - kcrash
   - kcoreaddons
