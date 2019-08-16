@@ -155,7 +155,6 @@ update_system: false
 operations:
 - try_remove:
   - calamares_offline
-  - ckbcomp
   - arch-install-scripts
   - qt5-svg
   - qt5-webengine
@@ -193,3 +192,4 @@ operations:
   - kcoreaddons
   - kconfig
   - clonezilla
+  - ckbcomp
