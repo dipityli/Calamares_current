@@ -1,3 +1,6 @@
+* Since august 23 2019 we're only keeping needed/specific files to build calamares, so the build process is done by PKGBUILD. makepkg is responsible to merge our config files with latest calamares source
+The current PKGBUILD can be accessed at https://github.com/endeavouros-team/PKGBUILDS/tree/master/Calamares_current
+
 Use a virtual machine or live iso
 
 To have all functionalities be sure to install:
