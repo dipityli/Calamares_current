@@ -103,3 +103,4 @@ operations:
   - libdvdcss
   - systemd-ui
   - efibootmgr
+  - lsb-release

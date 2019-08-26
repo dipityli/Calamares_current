@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+#import requests
 
 from pathlib import Path
 from libcalamares import *
@@ -293,20 +294,31 @@ def get_supported_filesystems():
     return []
 
 def update_db():
+
+    # Hope is simpler this way
+
+    START_HAVEGED = "haveged -w 1024"
+    PACMAN_INIT = "pacman-key --init"
+    PACMAN_POPULATE = "pacman-key --populate"
+    PACMAN_REFRESH ="pacman-key --refresh-keys"
+    STOP_HAVEGED = "pkill haveged"
+    BACKUP_MIRROLIST = "cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak"
+    BEST_MIRRORS = "reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist"
+
     # Update database, step by step in the running iso only. Necessary if running old iso version
-    subprocess.call(["haveged", "-w", "1024"])   
-    subprocess.call(["pacman-key", "--init"])   
-    subprocess.call(["pacman-key", "--populate"])   
-    subprocess.call(["pacman-key", "--refresh-keys"])   
-    subprocess.call(["pkill", "haveged"])  
+    subprocess.call(START_HAVEGED.split(' ')) 
+    subprocess.call(PACMAN_INIT.split(' '))  
+    subprocess.call(PACMAN_POPULATE.split(' ')) 
+    subprocess.call(PACMAN_REFRESH.split(' '))
+    subprocess.call(STOP_HAVEGED.split(' '))   
 
     # Commands above give us more control and remove the need to use packages module to update db and system.
     # update_db: false
     # update_system: false
-
     # Speed up download using fastest mirrors
-    subprocess.call(["cp", "/etc/pacman.d/mirrorlist", "/etc/pacman.d/mirrorlist.bak"]) # may not need it for iso 
-    subprocess.call(["reflector", "--verbose", "--age", "8", "--fastest", "128", "--latest", "64", "--number", "32", "--sort", "rate", "--save", "/etc/pacman.d/mirrorlist"])  
+
+    subprocess.call(BACKUP_MIRROLIST.split(' '))  
+    subprocess.call(BEST_MIRRORS.split(' '))
 
     # After the above there is no need to run cmds again in case the user tries to launch calamares a second time
 
@@ -316,7 +328,6 @@ def update_db():
     except:
         pass
     
-
 def run():
     """
     Install base filesystem.
@@ -333,32 +344,29 @@ def run():
     except:
         pass
 
-    # Install base system + endeavouros packages
-    # if the list of packages keeps growing may be better read list from a file
-    subprocess.call(["/usr/bin/pacstrap_endeavouros", "-c", root_mount_point, "base", "sudo", "grub", "endeavouros-keyring", "endeavouros-mirrorlist", "grub2-theme-endeavouros", "kalu", "yay", "networkmanager"])
+    # Install base system + endeavouros packages + copy necessary config files
 
+    PACSTRAP = "/usr/bin/pacstrap_endeavouros -c"
+    PACKAGES = "base sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros"
+    COPY_CMD = "cp -f"
+    CLEANER_SCRIPT = "/usr/bin/cleaner_script.sh"
+    PACMAN_CONF = "/etc/pacman.conf"
+    PACMAN_MIRRORS = "/etc/pacman.d/mirrorlist"
+    OS_RELEASE = "/etc/os-release"
+    DEST_BIN = "/usr/bin"
+    DEST_ETC = "/etc"
+    DEST_MIRRORS = "/etc/pacman.d"
+    GRUB_CONF = "/etc/default/grub"
+    DEST_GRUB = "/etc/default"
 
-    subprocess.call(["cp", "-f", "/usr/bin/cleaner_script.sh", root_mount_point + "/usr/bin"])
+    subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' '))
 
-    subprocess.call(["cp", "-f", "/etc/pacman.conf", root_mount_point + "/etc"])
+    subprocess.call(COPY_CMD.split(' ') + [CLEANER_SCRIPT] + [root_mount_point + DEST_BIN])
 
-    subprocess.call(["cp", "-f", "/etc/os-release", root_mount_point + "/etc"])
+    subprocess.call(COPY_CMD.split(' ') + [PACMAN_CONF] + [root_mount_point + DEST_ETC])
 
-    # Something else to be copied?
+    subprocess.call(COPY_CMD.split(' ') + [OS_RELEASE] + [root_mount_point + DEST_ETC])
 
-    # download config files?
+    subprocess.call(COPY_CMD.split(' ') + [GRUB_CONF] + [root_mount_point + DEST_GRUB])
 
-    # Interesting alternatives/addons
-
-    #subprocess.call(["/usr/bin/pacstrap_endeavouros", "-c", root_mount_point, "base", "sudo", "grub"])
-    # -c storage downloaded packages at running system (ISO). Don't need to redownload everything in case running calamares again
-    # without sudo package calamares crashes, "missing sudoers file"
-    # without grub can't install it :)
-    #subprocess.call(["pacman", "-Sy"]) # pacstrap already syncs, so not needed
-
-    #subprocess.call(["pacstrap", "-c", root_mount_point, "base", "sudo", "grub"])
-    #subprocess.call(["rsync", "-a", "", root_mount_point])
-    #subprocess.call(["pacman", "-Sy", "glibc", "filesystem", "base", "--noconfirm", "--root", root_mount_point, "--dbpath", "/var/lib/pacman", "-v", "-y"])
-    #pacstrap -c ${MOUNTPOINT} $(cat /home/$ISO_USER/packages_pacman.txt)
-    #pacman -Sy PACKAGE -r PATH --dbpath /var/lib/pacman -v -y
-
+    subprocess.call(COPY_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point + DEST_MIRRORS])
