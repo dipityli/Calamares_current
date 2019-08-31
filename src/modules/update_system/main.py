@@ -20,7 +20,7 @@ def update_db():
     STOP_HAVEGED = "pkill haveged"
     BACKUP_MIRROLIST = "cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak"
     #BEST_MIRRORS = "reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist"
-    BEST_MIRRORS = "reflector --verbose -a1 -f10 -l70 -phttps --sort rate --save /etc/pacman.d/mirrorlist
+    BEST_MIRRORS = "reflector --verbose -a1 -f10 -l70 -phttps --sort rate --save /etc/pacman.d/mirrorlist"
     RANK_MIRRORS = "/usr/bin/update-mirrorlist"
     PACMAN_UPDATE = "pacman -Syu --noconfirm"
 
