@@ -24,7 +24,7 @@ def update_db():
     #BEST_MIRRORS = "reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist"
     BEST_MIRRORS = "reflector --verbose -a1 -f10 -l70 -phttps --sort rate --save /etc/pacman.d/mirrorlist"
 
-    RANK_MIRRORS = "/usr/bin/update-mirrorlist -p=https,http -s"
+    RANK_MIRRORS = "/usr/bin/update-mirrorlist"
 
     # Update database, step by step in the running iso only. Necessary if running old iso version
     subprocess.call(START_HAVEGED.split(' ')) 
