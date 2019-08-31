@@ -7,6 +7,7 @@
 
 import subprocess
 import libcalamares
+from pathlib import Path
 
 root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
@@ -19,6 +20,7 @@ def update_db():
     STOP_HAVEGED = "pkill haveged"
     BACKUP_MIRROLIST = "cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak"
     BEST_MIRRORS = "reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist"
+    RANK_MIRRORS = "/usr/bin/update-mirrorlist"
     PACMAN_UPDATE = "pacman -Syu --noconfirm"
 
     # Populate and refresh keys
@@ -29,7 +31,16 @@ def update_db():
     subprocess.call(['chroot'] + [root_mount_point] + STOP_HAVEGED.split(' '))   
     # Best mirrors
     subprocess.call(['chroot'] + [root_mount_point] + BACKUP_MIRROLIST.split(' '))  
-    subprocess.call(['chroot'] + [root_mount_point] + BEST_MIRRORS.split(' '))
+
+    update_mirrors_installed = Path("/usr/bin/update-mirrorlist")
+    try:
+        if not update_mirrors_installed.exists():
+            subprocess.call(BEST_MIRRORS.split(' '))
+        else:
+            subprocess.call([RANK_MIRRORS, '||', BEST_MIRRORS], shell=True)
+    except:
+        pass
+
     # Update
     subprocess.call(['chroot'] + [root_mount_point] + PACMAN_UPDATE.split(' '))
 
@@ -40,10 +51,3 @@ def run():
             update_db()
         except:
             pass
-
-
-
-
-
-   
-
