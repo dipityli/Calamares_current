@@ -91,6 +91,9 @@ def run():
     DEST_MIRRORS = "/etc/pacman.d"
     GRUB_CONF = "/etc/default/grub"
     DEST_GRUB = "/etc/default"
+    SKEL_FOLDER = "/etc/skel"
+    ZSH_PROFILE = "/etc/skel/.zprofile"
+    ZSH_RC = "/etc/skel/.zshrc"
 
     subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' '))
 
@@ -104,3 +107,4 @@ def run():
 
     subprocess.call(COPY_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point + DEST_MIRRORS])
 
+    subprocess.call(COPY_CMD.split(' ') + [ZSH_PROFILE] + [ZSH_RC] + [root_mount_point + SKEL_FOLDER])
