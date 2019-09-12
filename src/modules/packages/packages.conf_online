@@ -105,3 +105,8 @@ operations:
   - systemd-ui
   - efibootmgr
   - lsb-release
+  - dosfstools
+  - mtools
+  - openssh
+  - intel-ucode
+  - amd-ucode
