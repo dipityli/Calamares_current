@@ -5,6 +5,7 @@ update_db: false
 update_system: false
 operations:
 - try_install:
+  - linux-headers
   - linux-firmware
   - xf86-video-vesa
   - xorg-server
