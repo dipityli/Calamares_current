@@ -38,6 +38,8 @@ operations:
   - modemmanager
   - netctl
   - net-tools
+  - ntfs-3g
+  - nvidia-installer-dkms
   - networkmanager
   - networkmanager-openvpn
   - nss-mdns
