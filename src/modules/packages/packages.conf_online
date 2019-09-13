@@ -112,3 +112,4 @@ operations:
   - openssh
   - intel-ucode
   - amd-ucode
+  - os-prober
