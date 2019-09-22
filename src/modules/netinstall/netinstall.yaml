@@ -18,6 +18,8 @@
     - xf86-video-intel
     - xf86-video-vesa
     - xorg-xkill
+    - xdg-user-dirs
+    - xdg-user-dirs-gtk
     - gvfs
     - gvfs-mtp
     - gvfs-afc
@@ -146,8 +148,6 @@
     - mate-extra
     - celluloid
     - network-manager-applet
-    - xdg-user-dirs-gtk
-    - xdg-user-dirs
     - lightdm
     - lightdm-gtk-greeter
     - lightdm-gtk-greeter-settings
@@ -160,7 +160,6 @@
     - plasma
     - plasma-wayland-session
     - kde-applications
-    - xdg-user-dirs
     - packagekit-qt5
     - elisa
     - kdeconnect
@@ -185,8 +184,6 @@
     - gnome-terminal
     - xdg-user-dirs-update
     - celluloid
-    - xdg-user-dirs-gtk
-    - xdg-user-dirs
     - x-apps
     - file-roller
     - lightdm
