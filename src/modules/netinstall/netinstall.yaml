@@ -217,13 +217,6 @@
     - deepin
     - deepin-extra
     - celluloid
-- name: "Base"
-  description: "A base system without a Desktop, mainly to install Desktop Environment on you own. "
-  hidden: false
-  selected: false
-  critical: false
-  packages:
-    - base-devel
 - name: "Printing-Support"
   description: "Support for printing (Cups)"
   hidden: false
