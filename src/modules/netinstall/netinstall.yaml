@@ -165,7 +165,7 @@
     - kdeconnect
 - name: "GNOME-Desktop"
   description: "GNOME Desktop - designed to put you in control and get things done. "
-  hidden: false
+  hidden: true
   selected: false
   critical: false
   packages:
@@ -198,7 +198,7 @@
     - gnome-calculator
 - name: "Budgie-Desktop"
   description: "Budgie - I Tawt I Taw A Purdy Desktop"
-  hidden: false
+  hidden: true
   selected: false
   critical: false
   packages:
@@ -210,13 +210,53 @@
     - lightdm-gtk-greeter-settings
 - name: "Deepin-Desktop"
   description: "Deepin Desktop - beautiful, easy to use, safe and reliable. "
-  hidden: false
+  hidden: true
   selected: false
   critical: false
   packages:
     - deepin
     - deepin-extra
     - celluloid
+- name: "i3 Window Manager"
+  description: "i3 tiling window manager, primarily targeted at developers and advanced users. "
+  hidden: true
+  selected: false
+  critical: false
+  post-install: systemctl -f enable lightdm
+  packages:
+    - i3-wm
+    - i3-blocks
+    - i3-lock
+    - i3-status
+    - network-manager-applet
+    - arandr
+    - archlinux-xdg-menu
+    - lxappearance-gtk3
+    - ttf-font-icons
+    - rofi
+    - lightdm
+    - lightdm-gtk-greeter
+    - light-locker
+    - lightdm-gtk-greeter-settings
+- name: "Openbox"
+  description: "Openbox is a highly configurable, next generation window manager with extensive standards support."
+  hidden: true
+  selected: false
+  critical: false
+  post-install: systemctl -f enable lightdm
+  packages:
+    - openbox
+    - obconf
+    - lxappearance-obconf
+    - lxinput
+    - lxrandr
+    - arandr
+    - menumaker
+    - archlinux-xdg-menu
+    - lightdm
+    - lightdm-gtk-greeter
+    - light-locker
+    - lightdm-gtk-greeter-settings
 - name: "Printing-Support"
   description: "Support for printing (Cups)"
   hidden: false
