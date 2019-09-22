@@ -79,6 +79,7 @@ def run():
 
     # Install base system + endeavouros packages + copy necessary config files
 
+    # sed '/chroot_setup(),/\}' -e '/chroot_add_mount proc/d' -e '/chroot_add_mount sys/d' -e '/chroot_add_mount udev/d' -e '/chroot_add_mount devpts/d' -e '/chroot_add_mount shm/d' -e '/chroot_add_mount \/run/d' -e '/chroot_add_mount tmp/d' -e '/ignore_error /d'  -e '/efivarfs /d' /usr/bin/pacstrap
     PACSTRAP = "/usr/bin/pacstrap_endeavouros -c"
     PACKAGES = "base sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros"
     COPY_CMD = "cp -f"
