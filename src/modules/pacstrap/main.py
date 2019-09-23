@@ -52,7 +52,7 @@ def update_db():
 
     try:
         open('/tmp/run_once', 'a')
-        run_once.close()
+        /tmp/run_once.close()
     except:
         pass
     
@@ -100,5 +100,7 @@ def run():
     subprocess.call(COPY_CMD.split(' ') + [GRUB_CONF] + [root_mount_point + DEST_GRUB])
 
     subprocess.call(COPY_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point + DEST_MIRRORS])
+
+    subprocess.call(COPY_CMD.split(' ') + ["/tmp/run_once"] + [root_mount_point + "/tmp/run_once"])
 
     #subprocess.call(COPY_CMD.split(' ') + [ZSH_PROFILE] + [ZSH_RC] + [root_mount_point + SKEL_FOLDER])
