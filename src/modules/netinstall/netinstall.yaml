@@ -227,18 +227,19 @@
   post-install: systemctl -f enable lightdm
   packages:
     - i3-wm
-    - i3-blocks
-    - i3-lock
-    - i3-status
+    - i3blocks
+    - i3lock
+    - i3status
     - network-manager-applet
     - arandr
     - archlinux-xdg-menu
     - lxappearance-gtk3
     - ttf-font-icons
     - rofi
+    - dmenu
+    - terminator
     - lightdm
     - lightdm-gtk-greeter
-    - light-locker
     - lightdm-gtk-greeter-settings
 - name: "Openbox"
   description: "Openbox is a highly configurable, next generation window manager with extensive standards support."
@@ -257,7 +258,6 @@
     - archlinux-xdg-menu
     - lightdm
     - lightdm-gtk-greeter
-    - light-locker
     - lightdm-gtk-greeter-settings
 - name: "Printing-Support"
   description: "Support for printing (Cups)"
