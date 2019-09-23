@@ -114,6 +114,7 @@
     - intel-ucode
     - amd-ucode
     - os-prober
+    - wget
 - name: "Accessibility Tools"
   description: "Screen reader and mouse tweak"
   hidden: false
