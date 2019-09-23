@@ -32,12 +32,6 @@ def update_db():
     subprocess.call(PACMAN_POPULATE.split(' ')) 
     subprocess.call(PACMAN_REFRESH.split(' '))
     subprocess.call(STOP_HAVEGED.split(' '))   
-
-    # Commands above give us more control and remove the need to use packages module to update db and system.
-    # update_db: false
-    # update_system: false
-    # Speed up download using fastest mirrors
-
     subprocess.call(BACKUP_MIRROLIST.split(' '))  
 
 #############################################################
@@ -62,26 +56,6 @@ def update_db():
     except:
         pass
     
-
-def make_pacstrap():
-    # Ugly :)
-    # checks the occurrances in the function, betwen interval "chroot_setup()" to "}" and delete unecessary lines
-    PACSTRAP_CREATE = "sed -e '/chroot_add_mount proc/d' -e '/chroot_add_mount sys/d' -e '/chroot_add_mount udev/d' -e '/chroot_add_mount devpts/d' -e '/chroot_add_mount shm/d' -e '/chroot_add_mount \/run/d' -e '/chroot_add_mount tmp/d' -e '/ignore_error /d'  -e '/efivarfs /d' /usr/bin/pacstrap > /tmp/pacstrap_tmp"
-    PACSTRAP_X = "chmod +x /tmp/pacstrap_tmp"
-    PACSTRAP_MV = "mv /tmp/pacstrap_tmp /tmp/pacstrap_calamares"   
-
-    try:
-        # Error file is busy
-        # Are you kidding me? Trying to cut a tree down using a hammer
-        # You deserve it if you're trying to use the wrong tool for the wrong job
-
-        #subprocess.call(PACSTRAP_COPY.split(' '))
-        subprocess.Popen(PACSTRAP_CREATE, shell=True)
-        subprocess.call(PACSTRAP_X.split(' '))
-        subprocess.call(PACSTRAP_MV.split(' '))
-    except:
-        pass
-
 def run():
     """
     Install base filesystem.
@@ -97,19 +71,9 @@ def run():
     except:
         pass
 
-    # Check if modified pacstrap exists
-    pacstrap_check = Path("/tmp/pacstrap_calamares")
-
-    try:
-        if not pacstrap_check.exists():
-            make_pacstrap()
-    except:
-        pass
-
     # Install base system + endeavouros packages + copy necessary config files
 
-
-    PACSTRAP = "/tmp/pacstrap_calamares -c"
+    PACSTRAP = "/usr/bin/pacstrap_calamares -c"
     PACKAGES = "base sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros"
     COPY_CMD = "cp -f"
     CLEANER_SCRIPT = "/usr/bin/cleaner_script.sh"
