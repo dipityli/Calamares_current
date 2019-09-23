@@ -62,7 +62,6 @@
     - iwd
     - linux-atm
     - ndisc6
-    - nmap
     - ppp
     - pptpclient
     - vpnc
@@ -115,6 +114,7 @@
     - amd-ucode
     - os-prober
     - wget
+    - bash-completion
     - welcome
 - name: "Accessibility Tools"
   description: "Screen reader and mouse tweak"
