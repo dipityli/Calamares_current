@@ -1,4 +1,4 @@
-- name: "Base-devel + Commom packages"
+- name: "Base-devel + Common packages"
   description: "Recommended. Don't change unless you know what you're doing. Base-devel group and some other commom utilities (generic)"
   hidden: false
   selected: true
@@ -115,6 +115,7 @@
     - amd-ucode
     - os-prober
     - wget
+    - welcome
 - name: "Accessibility Tools"
   description: "Screen reader and mouse tweak"
   hidden: false
