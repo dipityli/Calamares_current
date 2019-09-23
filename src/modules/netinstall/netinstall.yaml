@@ -224,7 +224,6 @@
   hidden: true
   selected: false
   critical: false
-  post-install: systemctl -f enable lightdm
   packages:
     - i3-wm
     - i3blocks
@@ -246,7 +245,6 @@
   hidden: true
   selected: false
   critical: false
-  post-install: systemctl -f enable lightdm
   packages:
     - openbox
     - obconf
