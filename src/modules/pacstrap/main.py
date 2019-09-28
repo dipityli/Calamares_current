@@ -52,7 +52,7 @@ def update_db():
 
     try:
         open('/tmp/run_once', 'a')
-        /tmp/run_once.close()
+        run_once.close()
     except:
         pass
     
