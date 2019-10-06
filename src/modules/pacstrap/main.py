@@ -90,8 +90,9 @@ def run():
     ZSH_PROFILE = "/etc/skel/.zprofile"
     ZSH_RC = "/etc/skel/.zshrc"
 
-    subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' '))
-    subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + OLD_BASE.split(' '))
+    subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' ') + OLD_BASE.split(' '))
+    # Now as one command above
+    #subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + OLD_BASE.split(' '))
 
     subprocess.call(COPY_CMD.split(' ') + [CLEANER_SCRIPT] + [root_mount_point + DEST_BIN])
 
