@@ -75,6 +75,7 @@ def run():
 
     PACSTRAP = "/usr/bin/pacstrap_calamares -c"
     PACKAGES = "base sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros"
+    OLD_BASE = "cryptsetup device-mapper dhcpcd diffutils e2fsprogs inetutils jfsutils less linux linux-firmware logrotate lvm2 man-db man-pages mdadm nano netctl perl reiserfsprogs s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which xfsprogs"
     COPY_CMD = "cp -f"
     CLEANER_SCRIPT = "/usr/bin/cleaner_script.sh"
     PACMAN_CONF = "/etc/pacman.conf"
@@ -90,6 +91,7 @@ def run():
     ZSH_RC = "/etc/skel/.zshrc"
 
     subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' '))
+    subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + OLD_BASE.split(' '))
 
     subprocess.call(COPY_CMD.split(' ') + [CLEANER_SCRIPT] + [root_mount_point + DEST_BIN])
 
@@ -102,5 +104,3 @@ def run():
     subprocess.call(COPY_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point + DEST_MIRRORS])
 
     subprocess.call(COPY_CMD.split(' ') + ["/tmp/run_once"] + [root_mount_point + "/tmp/run_once"])
-
-    #subprocess.call(COPY_CMD.split(' ') + [ZSH_PROFILE] + [ZSH_RC] + [root_mount_point + SKEL_FOLDER])
