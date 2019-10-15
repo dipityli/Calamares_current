@@ -1,6 +1,4 @@
-#README.md
-
-Basic EndeavourOS config files
+Basic EndeavourOS/Portergos config files
 
 Branding folder:
 Contains a minimum set of files to make a customized slide presentation in the install process
