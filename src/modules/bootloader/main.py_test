@@ -290,11 +290,26 @@ def install_grub(efi_directory, fw_type):
             efi_grub_file = "grubx64.efi"
             efi_boot_file = "bootx64.efi"
 
-        check_target_env_call([libcalamares.job.configuration["grubInstall"],
+        # Trying changes regarding efi errors - START
+        try:
+            check_target_env_call([libcalamares.job.configuration["grubInstall"],
+                               "--target=" + efi_target,
+                               "--efi-directory=" + efi_directory,
+                               "--bootloader-id=" + efi_bootloader_id,
+                               "--force"])
+
+        # Pudge idea - grub-install --target=x86_64-efi --bootloader-id=grub-efi --recheck
+        else:
+            try:
+                check_target_env_call([libcalamares.job.configuration["grubInstall"],
                                "--target=" + efi_target,
                                "--bootloader-id=" + efi_bootloader_id,
-                               "--recheck",
-                               "--force"])
+                               "--recheck"])
+            else:
+                install_grub = "grub-install --target=x86_64-efi --bootloader-id=grub-efi --recheck"
+                subprocess.call(install_grub.split(' '))
+
+        # Trying changes regarding efi errors - END
 
         # VFAT is weird, see issue CAL-385
         install_efi_directory_firmware = (vfat_correct_case(
