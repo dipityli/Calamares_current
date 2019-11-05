@@ -299,13 +299,13 @@ def install_grub(efi_directory, fw_type):
                                "--force"])
 
         # Pudge idea - grub-install --target=x86_64-efi --bootloader-id=grub-efi --recheck
-        else:
+        except:
             try:
                 check_target_env_call([libcalamares.job.configuration["grubInstall"],
                                "--target=" + efi_target,
                                "--bootloader-id=" + efi_bootloader_id,
                                "--recheck"])
-            else:
+            except:
                 install_grub = "grub-install --target=x86_64-efi --bootloader-id=grub-efi --recheck"
                 subprocess.call(install_grub.split(' '))
 
