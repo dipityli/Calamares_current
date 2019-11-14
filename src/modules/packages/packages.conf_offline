@@ -154,6 +154,8 @@ update_system: false
 #    - binutils
 operations:
 - try_remove:
+  - qt5ct
+  - qt5-base
   - calamares_current
   - arch-install-scripts
   - qt5-svg
@@ -162,14 +164,11 @@ operations:
   - kdbusaddons 
   - kcrash
   - qt5-declarative
-  - qt5ct
   - squashfs-tools
   - ddrescue
   - dd_rescue
   - testdisk
   - darkhttpd
-  - partimage
-  - lftp
   - qt5-tools
   - kparts
   - polkit-qt5
@@ -177,10 +176,8 @@ operations:
   - python-pyqt5
   - python-sip-pyqt5
   - pyqt5-common
-  - qt5-base
   - extra-cmake-modules 
   - cmake
-  - ghex
   - elinks
   - yaml-cpp
   - syslinux
