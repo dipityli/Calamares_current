@@ -142,16 +142,6 @@ update_system: false
 # "binutils", and then a second time for "wget". When installing large numbers
 # of packages, this can lead to a considerable time savings.
 #
-#operations:
-#  - install:
-#    - vi
-#    - vi-${LOCALE}
-#    - wget
-#    - binutils
-#  - remove:
-#    - vi
-#    - wget
-#    - binutils
 operations:
 - try_remove:
   - qt5ct
@@ -168,7 +158,6 @@ operations:
   - ddrescue
   - dd_rescue
   - testdisk
-  - darkhttpd
   - qt5-tools
   - kparts
   - polkit-qt5
@@ -182,11 +171,12 @@ operations:
   - yaml-cpp
   - syslinux
   - solid
-  - partclone
   - kwidgetsaddons
   - kservice
   - ki18n
   - kcoreaddons
   - kconfig
   - clonezilla
+  - partclone
+  - partimage
   - ckbcomp
