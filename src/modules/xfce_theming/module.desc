@@ -1,0 +1,6 @@
+# Syntax is YAML 1.2
+---
+type:       "job"
+name:       "xfce_theming"
+interface:  "python"
+script:     "main.py"
