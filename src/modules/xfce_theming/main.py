@@ -17,7 +17,7 @@ def run():
     xfce_installed = Path("root_mount_point + /usr/share/xsessions/xfce.desktop")
     # cleaning stuff from cleaner script may be needed
     # config copied before creating new user, so use skel folder
-    COPY_CMD = "cp -f"
+    COPY_CMD = "cp -rf"
     SKEL_CONFIG = "/etc/skel/.config/xfce"
     try:
         if xfce_installed.exists():
