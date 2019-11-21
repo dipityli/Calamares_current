@@ -14,7 +14,7 @@ root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
 def run():
     # Have my doubts if root mount point + path actually work in path function
-    xfce_installed = Path("root_mount_point + /usr/share/xsessions/xfce.desktop")
+    xfce_installed = Path(root_mount_point + "/usr/share/xsessions/xfce.desktop")
     # cleaning stuff from cleaner script may be needed
     # config copied before creating new user, so use skel folder
     COPY_CMD = "cp -rf"
