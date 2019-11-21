@@ -19,8 +19,8 @@ def run():
     # config copied before creating new user, so use skel folder
     COPY_CMD = "cp -f"
     SKEL_CONFIG = "/etc/skel/.config/xfce"
-        try:
-            if xfce_installed.exists():
-                    subprocess.call(COPY_CMD.split(' ') + [SKEL_CONFIG] + [root_mount_point + SKEL_CONFIG])
-        except:
-            pass
+    try:
+        if xfce_installed.exists():
+            subprocess.call(COPY_CMD.split(' ') + [SKEL_CONFIG] + [root_mount_point + SKEL_CONFIG])
+    except:
+        pass
