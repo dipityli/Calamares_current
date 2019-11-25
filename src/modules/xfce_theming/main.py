@@ -15,15 +15,19 @@ root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 def run():
     # Checks if xfce was installed in the system
     xfce_installed = Path(root_mount_point + "/usr/share/xsessions/xfce.desktop")
-    RSYNC_CMD = "rsync -vaR"
+    RSYNC_CMD = "rsync -vaRI"
     SKEL_CONFIG = "/etc/skel/.config/xfce4"
+    SYMLINK_ORIG = "ln -sf /usr/share/endeavouros/endeavouros-wallpaper.png"
+    SYMLINK_DEST = "/usr/share/backgrounds/{xfce-stripes.png,xfce-teal.jpg}"
     BACKGROUNG_IMG = "/usr/share/endeavouros/endeavouros-wallpaper.png"
     LIGHTDM_CONFIG = "/etc/lightdm/"
     try:
         if xfce_installed.exists():
+            subprocess.call(SYMLINK_ORIG.split(' ') + [root_mount_point + SYMLINK_DEST])
             subprocess.call(RSYNC_CMD.split(' ') + [SKEL_CONFIG] + [root_mount_point])
             subprocess.call(RSYNC_CMD.split(' ') + [BACKGROUNG_IMG] + [root_mount_point])
             subprocess.call(RSYNC_CMD.split(' ') + [LIGHTDM_CONFIG] + [root_mount_point])
+
 
     except:
         pass
