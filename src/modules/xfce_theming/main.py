@@ -18,12 +18,14 @@ def run():
     RSYNC_CMD = "rsync -vaRI"
     SKEL_CONFIG = "/etc/skel/.config/xfce4"
     SYMLINK_ORIG = "ln -sf /usr/share/endeavouros/endeavouros-wallpaper.png"
-    SYMLINK_DEST = "/usr/share/backgrounds/{xfce-stripes.png,xfce-teal.jpg}"
+    SYMLINK_FIRST = "/usr/share/backgrounds/xfce/xfce-stripes.png"
+    SYMLINK_SECOND = "/usr/share/backgrounds/xfce/xfce-teal.jpg"
     BACKGROUNG_IMG = "/usr/share/endeavouros/endeavouros-wallpaper.png"
     LIGHTDM_CONFIG = "/etc/lightdm/"
     try:
         if xfce_installed.exists():
-            subprocess.call(SYMLINK_ORIG.split(' ') + [root_mount_point + SYMLINK_DEST])
+            subprocess.call(SYMLINK_ORIG.split(' ') + [root_mount_point + SYMLINK_FIRST])
+            subprocess.call(SYMLINK_ORIG.split(' ') + [root_mount_point + SYMLINK_SECOND])
             subprocess.call(RSYNC_CMD.split(' ') + [SKEL_CONFIG] + [root_mount_point])
             subprocess.call(RSYNC_CMD.split(' ') + [BACKGROUNG_IMG] + [root_mount_point])
             subprocess.call(RSYNC_CMD.split(' ') + [LIGHTDM_CONFIG] + [root_mount_point])
