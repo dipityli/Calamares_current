@@ -13,17 +13,17 @@ from pathlib import Path
 root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
 def run():
-    # Have my doubts if root mount point + path actually work in path function
+    # Checks if xfce was installed in the system
     xfce_installed = Path(root_mount_point + "/usr/share/xsessions/xfce.desktop")
-    # cleaning stuff from cleaner script may be needed
-    # config copied before creating new user, so use skel folder
-    CREATE_PATH = "mkdir -p"    
-    COPY_CMD = "cp -rf"
+    RSYNC_CMD = "rsync -vaR"
     SKEL_CONFIG = "/etc/skel/.config/xfce4"
-    DEST_PATH = "/etc/skel/.config"
+    BACKGROUNG_IMG = "/usr/share/endeavouros/endeavouros-wallpaper.png"
+    LIGHTDM_CONFIG = "/etc/lightdm/"
     try:
         if xfce_installed.exists():
-            subprocess.call(CREATE_PATH.split(' ') + [root_mount_point + DEST_PATH])
-            subprocess.call(COPY_CMD.split(' ') + [SKEL_CONFIG] + [root_mount_point + DEST_PATH])
+            subprocess.call(RSYNC_CMD.split(' ') + [SKEL_CONFIG] + [root_mount_point])
+            subprocess.call(RSYNC_CMD.split(' ') + [BACKGROUNG_IMG] + [root_mount_point])
+            subprocess.call(RSYNC_CMD.split(' ') + [LIGHTDM_CONFIG] + [root_mount_point])
+
     except:
         pass
