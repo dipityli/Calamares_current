@@ -116,10 +116,11 @@ sequence:
 #  - plymouthcfg
   - initcpiocfg
   - initcpio
-  - removeuser
-  - users
   - networkcfg
   - packages
+  - xfce_theming
+  - removeuser
+  - users
   - displaymanager
   - hwclock
 #  - services-systemd
