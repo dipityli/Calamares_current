@@ -31,3 +31,8 @@ initcpio/InitcpioJob.cpp
 
 Modified version from calamares. Instead of using mkinitcpio -p "kernel" (which comes from initramfs module) uses mkinitcpio -P; this way iso can have multiple kernels installed and the install process is able to generate initramfs to all of them.
 ```
+
+```
+xfce_theming module
+Made to detect if xfce is installed using netinstall mode, then set the same config like theming, wallpaper as offline install.
+```
