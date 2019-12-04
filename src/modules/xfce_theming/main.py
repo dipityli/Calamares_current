@@ -17,6 +17,8 @@ def run():
     xfce_installed = Path(root_mount_point + "/usr/share/xsessions/xfce.desktop")
     RSYNC_CMD = "rsync -vaRI"
     SKEL_CONFIG = "/etc/skel/.config/xfce4"
+    # New version is needed, from now on we'll have a package to install backgrounds to all DEs
+    # SYMLINK_ORIG = "ln -sf /usr/share/endeavouros/backgrounds/EndeavourOS-xfce4.png"
     SYMLINK_ORIG = "ln -sf /usr/share/endeavouros/endeavouros-wallpaper.png"
     SYMLINK_FIRST = "/usr/share/backgrounds/xfce/xfce-stripes.png"
     SYMLINK_SECOND = "/usr/share/backgrounds/xfce/xfce-teal.jpg"
