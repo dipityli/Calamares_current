@@ -105,3 +105,5 @@ def run():
     subprocess.call(COPY_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point + DEST_MIRRORS])
 
     subprocess.call(COPY_CMD.split(' ') + ["/tmp/run_once"] + [root_mount_point + "/tmp/run_once"])
+    
+    subprocess.call(COPY_CMD.split(' ') + ["/etc/os-release"] + [root_mount_point + "/etc/os-release"])
