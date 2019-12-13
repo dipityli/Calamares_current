@@ -41,7 +41,8 @@ def update_db():
         if not update_mirrors_installed.exists():
             subprocess.call(BEST_MIRRORS.split(' '))
         else:
-            subprocess.call([RANK_MIRRORS, '||', BEST_MIRRORS], shell=True)
+            subprocess.call([BEST_MIRRORS], shell=True)
+            #subprocess.call([RANK_MIRRORS, '||', BEST_MIRRORS], shell=True)
     except:
         pass
 
@@ -76,34 +77,26 @@ def run():
     PACSTRAP = "/usr/bin/pacstrap_calamares -c"
     PACKAGES = "base sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros xterm"
     OLD_BASE = "mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils cryptsetup device-mapper dhcpcd diffutils e2fsprogs inetutils jfsutils less linux linux-firmware logrotate lvm2 man-db man-pages mdadm nano netctl perl reiserfsprogs s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which xfsprogs"
-    COPY_CMD = "cp -f"
+
+    RSYNC_CMD = "rsync -vaRI"
     CLEANER_SCRIPT = "/usr/bin/cleaner_script.sh"
     PACMAN_CONF = "/etc/pacman.conf"
     PACMAN_MIRRORS = "/etc/pacman.d/mirrorlist"
+    PACMAN_HOOKS1 = "/etc/pacman.d/hooks/os-release.hook"
+    PACMAN_HOOKS2 = "/etc/pacman.d/hooks/lsb-release.hook"
     OS_RELEASE = "/etc/os-release"
-    DEST_BIN = "/usr/bin"
-    DEST_ETC = "/etc"
-    DEST_MIRRORS = "/etc/pacman.d"
+    LSB_RELEASE = "/etc/lsb-release"
     GRUB_CONF = "/etc/default/grub"
-    DEST_GRUB = "/etc/default"
-    SKEL_FOLDER = "/etc/skel"
-    ZSH_PROFILE = "/etc/skel/.zprofile"
-    ZSH_RC = "/etc/skel/.zshrc"
 
     subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' ') + OLD_BASE.split(' '))
-    # Now as one command above
-    #subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + OLD_BASE.split(' '))
 
-    subprocess.call(COPY_CMD.split(' ') + [CLEANER_SCRIPT] + [root_mount_point + DEST_BIN])
-
-    subprocess.call(COPY_CMD.split(' ') + [PACMAN_CONF] + [root_mount_point + DEST_ETC])
-
-    subprocess.call(COPY_CMD.split(' ') + [OS_RELEASE] + [root_mount_point + DEST_ETC])
-
-    subprocess.call(COPY_CMD.split(' ') + [GRUB_CONF] + [root_mount_point + DEST_GRUB])
-
-    subprocess.call(COPY_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point + DEST_MIRRORS])
-
-    subprocess.call(COPY_CMD.split(' ') + ["/tmp/run_once"] + [root_mount_point + "/tmp/run_once"])
-    
-    subprocess.call(COPY_CMD.split(' ') + ["/etc/os-release"] + [root_mount_point + "/etc/os-release"])
+    subprocess.call(RSYNC_CMD.split(' ') + [CLEANER_SCRIPT] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_CONF] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + [OS_RELEASE] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + [GRUB_CONF] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + ["/tmp/run_once"] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + [OS_RELEASE] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_HOOKS1] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_HOOKS2] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + [LSB_RELEASE] + [root_mount_point])
