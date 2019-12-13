@@ -41,8 +41,7 @@ def update_db():
         if not update_mirrors_installed.exists():
             subprocess.call(BEST_MIRRORS.split(' '))
         else:
-            subprocess.call([BEST_MIRRORS], shell=True)
-            #subprocess.call([RANK_MIRRORS, '||', BEST_MIRRORS], shell=True)
+            subprocess.call([RANK_MIRRORS, '||', BEST_MIRRORS], shell=True)
     except:
         pass
 
