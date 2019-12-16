@@ -25,7 +25,7 @@ Presentation
     id: presentation
 
     function nextSlide() {
-        console.log("Next slide");
+        console.log("QML Component (default slideshow) Next slide");
         presentation.goToNextSlide();
     }
 
@@ -111,8 +111,19 @@ Presentation
     }
 
 
-    Component.onCompleted: {
-        advanceTimer.running = true;
-        console.log("Component complete");
+    // When this slideshow is loaded as a V1 slideshow, only
+    // activatedInCalamares is set, which starts the timer (see above).
+    //
+    // In V2, also the onActivate() and onLeave() methods are called.
+    // These example functions log a message (and re-start the slides
+    // from the first).
+    function onActivate() {
+        console.log("QML Component (default slideshow) activated");
+        presentation.currentSlide = 0;
     }
+    
+    function onLeave() {
+        console.log("QML Component (default slideshow) deactivated");
+    }
+
 }
