@@ -56,6 +56,10 @@ windowExpanding:    normal
 # Note that ANSI_COLOR and CPE_NAME don't make sense here, and
 # are not supported (the rest are). Remember to quote the string
 # if it contains substitutions, or you'll get YAML exceptions.
+#
+# The *Url* entries are used on the welcome page, and they
+# are visible as buttons there if the corresponding *show* keys
+# are set to "true" (they can also be overridden).
 strings:
     productName:         EndeavourOS
     shortProductName:    EndeavourOS
@@ -68,7 +72,6 @@ strings:
 #    supportUrl:          https://endeavouros.com/forum
 #    knownIssuesUrl:      https://github.com/endeavouros-team/calamares-offlineinstaller/issues
 #    releaseNotesUrl:     https://endeavouros.com/?page_id=83
-
 # These images are loaded from the branding module directory.
 #
 # productIcon is used as the window icon, and will (usually) be used
@@ -81,10 +84,10 @@ strings:
 # productWelcome is shown on the welcome page of the application in
 #       the middle of the window, below the welcome text. It can be
 #       any size and proportion, and will be scaled to fit inside
-#       the window. Use  to make it non-scaled.
+#       the window. Use `welcomeExpandingLogo` to make it non-scaled.
 #       Recommended size is 320x150.
 #
-# These strings can also use substitutions from os-release (see above).
+# These filenames can also use substitutions from os-release (see above).
 images:
     productLogo:         "EndeavourOS-logo.png"
     productIcon:         "EndeavourOS-icon.png"
