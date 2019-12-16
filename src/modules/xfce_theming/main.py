@@ -18,11 +18,11 @@ def run():
     RSYNC_CMD = "rsync -vaRI"
     SKEL_CONFIG = "/etc/skel/.config/xfce4"
     # New version is needed, from now on we'll have a package to install backgrounds to all DEs
-    # SYMLINK_ORIG = "ln -sf /usr/share/endeavouros/backgrounds/EndeavourOS-xfce4.png"
-    SYMLINK_ORIG = "ln -sf /usr/share/endeavouros/endeavouros-wallpaper.png"
+    SYMLINK_ORIG = "ln -sf /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png"
+    #SYMLINK_ORIG = "ln -sf /usr/share/endeavouros/endeavouros-wallpaper.png"
     SYMLINK_FIRST = "/usr/share/backgrounds/xfce/xfce-stripes.png"
     SYMLINK_SECOND = "/usr/share/backgrounds/xfce/xfce-teal.jpg"
-    BACKGROUNG_IMG = "/usr/share/endeavouros/endeavouros-wallpaper.png"
+    BACKGROUNG_IMG = "/usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png"
     LIGHTDM_CONFIG = "/etc/lightdm/"
     try:
         if xfce_installed.exists():
