@@ -81,25 +81,32 @@ def run():
     RSYNC_CMD = "rsync -vaRI"
     CHROOT_CLEANER_SCRIPT = "/usr/bin/chrooted_cleaner_script.sh"
     CLEANER_SCRIPT = "/usr/bin/cleaner_script.sh"
-    
     PACMAN_CONF = "/etc/pacman.conf"
     PACMAN_MIRRORS = "/etc/pacman.d/mirrorlist"
-    PACMAN_HOOKS1 = "/etc/pacman.d/hooks/os-release.hook"
-    PACMAN_HOOKS2 = "/etc/pacman.d/hooks/lsb-release.hook"
-    OS_RELEASE = "/etc/os-release"
-    LSB_RELEASE = "/etc/lsb-release"
-    GRUB_CONF = "/etc/default/grub"
 
     subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' ') + OLD_BASE.split(' '))
 
     subprocess.call(RSYNC_CMD.split(' ') + [CHROOT_CLEANER_SCRIPT] + [root_mount_point])
     subprocess.call(RSYNC_CMD.split(' ') + [CLEANER_SCRIPT] + [root_mount_point])
     subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_CONF] + [root_mount_point])
-    subprocess.call(RSYNC_CMD.split(' ') + [OS_RELEASE] + [root_mount_point])
-    subprocess.call(RSYNC_CMD.split(' ') + [GRUB_CONF] + [root_mount_point])
+
     subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point])
     subprocess.call(RSYNC_CMD.split(' ') + ["/tmp/run_once"] + [root_mount_point])
-    subprocess.call(RSYNC_CMD.split(' ') + [OS_RELEASE] + [root_mount_point])
-    subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_HOOKS1] + [root_mount_point])
-    subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_HOOKS2] + [root_mount_point])
-    subprocess.call(RSYNC_CMD.split(' ') + [LSB_RELEASE] + [root_mount_point])
+    
+
+
+
+
+    # Moved to cleaner_script.sh
+
+    #PACMAN_HOOKS1 = "/etc/pacman.d/hooks/os-release.hook"
+    #PACMAN_HOOKS2 = "/etc/pacman.d/hooks/lsb-release.hook"
+    #OS_RELEASE = "/etc/os-release"
+    #LSB_RELEASE = "/etc/lsb-release"
+    #GRUB_CONF = "/etc/default/grub"
+
+    #subprocess.call(RSYNC_CMD.split(' ') + [GRUB_CONF] + [root_mount_point])
+    #subprocess.call(RSYNC_CMD.split(' ') + [OS_RELEASE] + [root_mount_point])
+    #subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_HOOKS1] + [root_mount_point])
+    #subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_HOOKS2] + [root_mount_point])
+    #subprocess.call(RSYNC_CMD.split(' ') + [LSB_RELEASE] + [root_mount_point])
