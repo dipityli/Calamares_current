@@ -33,7 +33,7 @@ windowExpanding:    normal
 # This setting is ignored if "fullscreen" is selected for
 # *windowExpanding*, above. If not set, use constants defined
 # in CalamaresUtilsGui, 800x520.
-#windowSize: 800px,520px
+# windowSize: 800px,520px
 
 # These are strings shown to the user in the user interface.
 # There is no provision for translating them -- since they
@@ -91,7 +91,7 @@ strings:
 images:
     productLogo:         "EndeavourOS-logo.png"
     productIcon:         "EndeavourOS-icon.png"
-    productWelcome:      "language.png"
+    productWelcome:      "01_endeavouros_lang.png"
 
 # The slideshow is displayed during execution steps (e.g. when the
 # installer is actually writing to disk and doing other slow things).
@@ -120,7 +120,7 @@ slideshowAPI: 1
 # branding component also ships a stylesheet.qss. Then they are
 # the corresponding CSS attributes of #sidebarApp.
 style:
-   sidebarBackground:    "#d3d6e6"
-   sidebarText:          "#000000"
-   sidebarTextSelect:    "#ffffff"
-   sidebarTextHighlight: "#7f7fff"
+   sidebarBackground:    "#2A153F"
+   sidebarText:          "#958A9F"
+   sidebarTextSelect:    "#CCC639"
+   sidebarTextHighlight: "#221132"
