@@ -39,3 +39,7 @@ object names (ids), which you can find through debugging tools.
 #licenseItem {  }
 #licenseItemFullText {  }
 */
+
+#debugButton {
+	color: white;
+}
