@@ -76,7 +76,8 @@ def run():
 
     PACSTRAP = "/usr/bin/pacstrap_calamares -c"
     PACKAGES = "base sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros xterm"
-    OLD_BASE = "mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils cryptsetup device-mapper dhcpcd diffutils e2fsprogs inetutils jfsutils less linux linux-firmware logrotate lvm2 man-db man-pages mdadm nano netctl perl reiserfsprogs s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which xfsprogs f2fs-tools btrfs-progs"
+    OLD_BASE = "mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils dhcpcd diffutils inetutils jfsutils less logrotate man-db man-pages mdadm nano netctl perl s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which linux linux-firmware device-mapper"
+    FILESYSTEM_TOOLS = "cryptsetup e2fsprogs f2fs-tools btrfs-progs lvm2 reiserfsprogs xfsprogs"
 
     RSYNC_CMD = "rsync -vaRI"
     CHROOT_CLEANER_SCRIPT = "/usr/bin/chrooted_cleaner_script.sh"
@@ -84,7 +85,7 @@ def run():
     PACMAN_CONF = "/etc/pacman.conf"
     PACMAN_MIRRORS = "/etc/pacman.d/mirrorlist"
 
-    subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' ') + OLD_BASE.split(' '))
+    subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' ') + OLD_BASE.split(' ') + FILESYSTEM_TOOLS.split(' '))
 
     subprocess.call(RSYNC_CMD.split(' ') + [CHROOT_CLEANER_SCRIPT] + [root_mount_point])
     subprocess.call(RSYNC_CMD.split(' ') + [CLEANER_SCRIPT] + [root_mount_point])
