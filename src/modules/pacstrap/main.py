@@ -59,7 +59,7 @@ def update_db():
     
 def run():
     """
-    Install base filesystem.
+    Installing base filesystem. Please wait, it may take a few minutes!
     """
 
     # created new function above to update, populate, refresh, best mirrors etc
