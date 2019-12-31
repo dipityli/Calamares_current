@@ -61,7 +61,7 @@ def pretty_name():
             # Outside the context of an operation
             s = _("Processing packages (%(count)d / %(total)d)")
         else:
-            s = _("Install packages.")
+            s = _("Installing packages. Please wait! It may take some time!")
 
     elif mode_packages is INSTALL:
         s = _n("Installing one package.",
@@ -71,7 +71,7 @@ def pretty_name():
                "Removing %(num)d packages.", group_packages)
     else:
         # No mode, generic description
-        s = _("Install packages.")
+        s = _("Installing packages. Please wait! It may take some time!")
 
     return s % {"num": group_packages,
                 "count": completed_packages,
