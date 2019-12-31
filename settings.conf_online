@@ -121,10 +121,10 @@ sequence:
   - xfce_theming
   - removeuser
   - users
-  - displaymanager
   - hwclock
 #  - services-systemd
   - shellprocess
+  - displaymanager
 #  - dracut
 #  - initramfs
   - grubcfg
