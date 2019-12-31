@@ -121,10 +121,10 @@ sequence:
   - users
   - networkcfg
   - packages
-  - displaymanager
   - hwclock
 #  - services-systemd
   - shellprocess
+  - displaymanager
 #  - update_system
 #  - dracut
 #  - initramfs
