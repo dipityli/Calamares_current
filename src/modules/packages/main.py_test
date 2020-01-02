@@ -278,10 +278,9 @@ class PMPacman(PackageManager):
         if from_local:
             pacman_flags = "-U"
         else:
-            pacman_flags = "-S --needed"
+            pacman_flags = "-S"
 
-        check_target_env_call(["pacman", pacman_flags,
-                               "--noconfirm"] + pkgs)
+        check_target_env_call(["pacman", pacman_flags, "--needed", "--noconfirm"] + pkgs)
 
     def remove(self, pkgs):
         check_target_env_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
