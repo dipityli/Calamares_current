@@ -59,10 +59,10 @@ requirements:
 # To disable, either comment-out the entire section, or set
 # the *style* key to an unsupported format (e.g. `none`, as is
 # done here).
-
+# original url: https://geoip.kde.org/v1/ubiquity
 geoip:
     style:  "xml"
-    url:    "https://geoip.kde.org/v1/ubiquity"  # extended XML format
+    url:    "https://freegeoip.app/xml/"  # extended XML format
     selector: "CountryCode"  # blank uses default, which is wrong
 
 # User interface
