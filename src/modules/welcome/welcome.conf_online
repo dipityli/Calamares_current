@@ -61,9 +61,9 @@ requirements:
 # done here).
 # original url: https://geoip.kde.org/v1/ubiquity
 geoip:
-    style:  "xml"
-    url:    "https://freegeoip.app/xml/"  # extended XML format
-    selector: "CountryCode"  # blank uses default, which is wrong
+    style:  "json"
+    url:    "https://ipapi.co/json"  # extended XML format
+    selector: "country_code"  # blank uses default, which is wrong
 
 # User interface
 #
