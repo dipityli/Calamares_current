@@ -61,8 +61,8 @@ requirements:
 # done here).
 
 geoip:
-    style:  "json"
-    url:    "https://ipapi.co/json"  # extended XML format
+    style:  "xml"
+    url:    "https://ipapi.co/xml"  # extended XML format
     selector: "country_code"  # blank uses default, which is wrong
 
 # User interface
