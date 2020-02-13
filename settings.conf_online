@@ -133,7 +133,7 @@ sequence:
 - show:
 #  - webview@owncloud
   - finished
-  - install_log
+#  - install_log
 
 # A branding component is a directory, either in SHARE/calamares/branding or
 # in /etc/calamares/branding (the latter takes precedence). The directory must
