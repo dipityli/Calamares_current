@@ -110,14 +110,14 @@ sequence:
   - locale
   - keyboard
   - localecfg
+  - networkcfg
+  - packages
   - luksbootkeyfile
   - luksopenswaphookcfg
 #  - dracutlukscfg
 #  - plymouthcfg
   - initcpiocfg
   - initcpio
-  - networkcfg
-  - packages
   - xfce_theming
   - removeuser
   - users
