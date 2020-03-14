@@ -87,25 +87,16 @@ modules-search: [ local ]
 sequence:
 - show:
   - welcome
-#  - dummypythonqt
   - locale
   - keyboard
   - partition
-#  - netinstall
   - users
-#  - tracking
   - summary
 - exec:
-#  - dummycpp
-#  - dummyprocess
-#  - dummypython
-#  - dummypythonqt
   - partition
   - mount
-#  - pacstrap
   - unpackfs
   - copy_kernel
-#  - update_system
   - machineid
   - fstab
   - locale
@@ -113,8 +104,6 @@ sequence:
   - localecfg
   - luksbootkeyfile
   - luksopenswaphookcfg
-#  - dracutlukscfg
-#  - plymouthcfg
   - initcpiocfg
   - initcpio
   - removeuser
@@ -122,19 +111,13 @@ sequence:
   - networkcfg
   - packages
   - hwclock
-#  - services-systemd
   - shellprocess
   - displaymanager
-#  - update_system
-#  - dracut
-#  - initramfs
   - grubcfg
   - bootloader
   - umount
 - show:
-#  - webview@owncloud
   - finished
-#  - install_log
 
 # A branding component is a directory, either in SHARE/calamares/branding or
 # in /etc/calamares/branding (the latter takes precedence). The directory must

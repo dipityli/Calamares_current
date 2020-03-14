@@ -5,7 +5,7 @@
 # Additional styling can be done using the stylesheet.qss
 # file, also in the branding directory.
 ---
-componentName:  portergos
+componentName:  rebornos
 
 # This selects between different welcome texts. When false, uses
 # the traditional "Welcome to the %1 installer.", and when true,
@@ -67,13 +67,13 @@ windowPlacement: center
 # are visible as buttons there if the corresponding *show* keys
 # are set to "true" (they can also be overridden).
 strings:
-    productName:         Portergos
-    shortProductName:    Portergos
+    productName:         RebornOS
+    shortProductName:    RebornOS
     version:             1.0
     shortVersion:        1.0
-    versionedName:       Portergos
-    shortVersionedName:  Portergos
-    bootloaderEntryName: Portergos
+    versionedName:       RebornOS
+    shortVersionedName:  RebornOS
+    bootloaderEntryName: RebornOS
 #    productUrl:          https://calamares.io/
 #    supportUrl:          https://github.com/calamares/calamares/issues
 #    knownIssuesUrl:      https://calamares.io/about/
