@@ -90,6 +90,7 @@ sequence:
   - locale
   - keyboard
   - partition
+  - netinstall
   - users
   - summary
 - exec:
@@ -102,6 +103,7 @@ sequence:
   - keyboard
   - localecfg
   - networkcfg
+  - packages
   - luksbootkeyfile
   - luksopenswaphookcfg
   - initcpiocfg
