@@ -6,12 +6,12 @@
     <message>
         <location filename="../show.qml" line="64"/>
         <source>This is a second Slide element.</source>
-        <translation>عرض الثاني</translation>
+        <translation>Dit is het tweede Dia element.</translation>
     </message>
     <message>
         <location filename="../show.qml" line="68"/>
         <source>This is a third Slide element.</source>
-	<translation>عرض الثالث</translation>
+        <translation>Dit is het derde Dia element.</translation>
     </message>
 </context>
 </TS>

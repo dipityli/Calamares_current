@@ -362,6 +362,23 @@ class PMPisi(PackageManager):
         # Doesn't need to update the system explicitly
         pass
 
+class PMApk(PackageManager):
+    backend = "apk"
+
+    def install(self, pkgs, from_local=False):
+        for pkg in pkgs:
+            check_target_env_call(["apk", "add", pkg])
+
+    def remove(self, pkgs):
+        for pkg in pkgs:
+            check_target_env_call(["apk", "del", pkg])
+
+    def update_db(self):
+        check_target_env_call(["apk", "update"])
+
+    def update_system(self):
+        check_target_env_call(["apk", "upgrade", "--available"])
+
 
 # Collect all the subclasses of PackageManager defined above,
 # and index them based on the backend property of each class.
@@ -477,6 +494,10 @@ def run_operations(pkgman, entry):
             else:
                 for package in package_list:
                     pkgman.install_package(package, from_local=True)
+        elif key == "source":
+            libcalamares.utils.debug("Package-list from {!s}".format(entry[key]))
+        else:
+            libcalamares.utils.warning("Unknown package-operation key {!s}".format(key))
 
         completed_packages += len(package_list)
         libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)
