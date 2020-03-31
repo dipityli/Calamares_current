@@ -16,7 +16,7 @@ def run():
 
     ##### WORKS
     try:
-     subprocess.call('rm', '/tmp/chrootpath.txt')
+     subprocess.call(['rm', '/tmp/chrootpath.txt'])
      with open('/tmp/chrootpath.txt', 'w') as file:
       root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
       file.write(root_mount_point)
@@ -25,7 +25,7 @@ def run():
      pass # doing nothing on exception
 
     try:
-     subprocess.call('rm', '/tmp/packages.txt
+     subprocess.call(['rm', '/tmp/packages.txt'])
      with open('/tmp/packages.txt', 'w') as file:
       _group_packages = libcalamares.globalstorage.value("pkgs")
       file.write(_group_packages)
@@ -34,7 +34,7 @@ def run():
      pass # doing nothing on exception
 
     try:
-     subprocess.call('rm', '/tmp/new_username.txt
+     subprocess.call(['rm', '/tmp/new_username.txt'])
      with open('/tmp/new_username.txt', 'w') as file:
       _username = libcalamares.globalstorage.value("username")
       file.write(_username)
