@@ -96,7 +96,7 @@ sequence:
 - exec:
   - partition
   - mount
-  - pacstrap
+  - pacstrap_vanilla
   - machineid
   - fstab
   - locale
