@@ -5,8 +5,19 @@
 
 import libcalamares
 import subprocess
+import json
 from libcalamares.utils import check_target_env_call, target_env_call
 from libcalamares.utils import *
+
+import abc
+from string import Template
+import subprocess
+
+import libcalamares
+from libcalamares.utils import check_target_env_call, target_env_call
+from libcalamares.utils import gettext_path, gettext_languages
+
+import gettext
 
 def run():
     """ Get root and username directly from calamares.
@@ -25,11 +36,14 @@ def run():
      pass # doing nothing on exception
 
     try:
-     subprocess.call(['rm', '/tmp/packages.txt'])
-     with open('/tmp/packages.txt', 'w') as file:
-      _group_packages = libcalamares.globalstorage.value("pkgs")
-      file.write(_group_packages)
-      file.close()
+     global mode_packages, total_packages, completed_packages, group_packages
+     subprocess.call(['rm', '/tmp/packages_list.txt'])
+     operations = libcalamares.job.configuration.get("operations", [])
+     if libcalamares.globalstorage.contains("packageOperations"):
+      operations += libcalamares.globalstorage.value("packageOperations")
+      with open('/tmp/packages_list.txt', 'a') as file:
+       file.write(json.dumps(operations))
+
     except:
      pass # doing nothing on exception
 
