@@ -76,7 +76,7 @@ def run():
 
     PACSTRAP = "/usr/bin/pacstrap_calamares -c"
     # pacman -Sy PACKAGE -r PATH --dbpath /var/lib/pacman -v -y
-    _PACMAN = "/usr/bin/pacman -v --needed --noconfirm ---config /etc/pacman.conf -Sy -r"
+    _PACMAN = "/usr/bin/pacman -v --needed --noconfirm --config /etc/pacman.conf -Sy -r"
     #_EXTRA_OPTIONS = "-r PATH --dbpath /var/lib/pacman -v -y"
     PACKAGES = "sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros xterm"
     OLD_BASE = "mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils dhcpcd diffutils inetutils jfsutils less logrotate man-db man-pages mdadm nano netctl perl s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which linux linux-firmware device-mapper"
