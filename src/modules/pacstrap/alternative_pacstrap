@@ -57,6 +57,21 @@ def update_db():
     except:
         pass
     
+def extra_packages():
+    # pacman -Sy PACKAGE -r PATH --dbpath /var/lib/pacman -v -y
+    _PACMAN = "/usr/bin/pacman -v --needed --noconfirm --config /etc/pacman.conf -Sy -r"
+    #_EXTRA_OPTIONS = "-r PATH --dbpath /var/lib/pacman -v -y"
+    PACKAGES = "sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros xterm"
+    OLD_BASE = "mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils dhcpcd diffutils inetutils jfsutils less logrotate man-db man-pages mdadm nano netctl perl s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which linux linux-firmware device-mapper"
+    FILESYSTEM_TOOLS = "cryptsetup e2fsprogs f2fs-tools btrfs-progs lvm2 reiserfsprogs xfsprogs"
+
+    for packages in PACKAGES.split(' '):
+        subprocess.call(_PACMAN.split(' ') + [root_mount_point] + [packages])
+    for filesystemtools in FILESYSTEM_TOOLS.split(' '):
+        subprocess.call(_PACMAN.split(' ') + [root_mount_point] + [filesystemtools])
+    for oldbase in OLD_BASE.split(' '):
+        subprocess.call(_PACMAN.split(' ') + [root_mount_point] + [oldbase])
+
 def run():
     """
     Installing base filesystem. Please wait! It may take some time!
@@ -75,12 +90,6 @@ def run():
     # Install base system + endeavouros packages + copy necessary config files
 
     PACSTRAP = "/usr/bin/pacstrap_calamares -c"
-    # pacman -Sy PACKAGE -r PATH --dbpath /var/lib/pacman -v -y
-    _PACMAN = "/usr/bin/pacman -v --needed --noconfirm --config /etc/pacman.conf -Sy -r"
-    #_EXTRA_OPTIONS = "-r PATH --dbpath /var/lib/pacman -v -y"
-    PACKAGES = "sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros xterm"
-    OLD_BASE = "mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils dhcpcd diffutils inetutils jfsutils less logrotate man-db man-pages mdadm nano netctl perl s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which linux linux-firmware device-mapper"
-    FILESYSTEM_TOOLS = "cryptsetup e2fsprogs f2fs-tools btrfs-progs lvm2 reiserfsprogs xfsprogs"
 
     RSYNC_CMD = "rsync -vaRI"
     CHROOT_CLEANER_SCRIPT = "/usr/bin/chrooted_cleaner_script.sh"
@@ -90,12 +99,7 @@ def run():
 
     subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + ['base'])
 
-    for packages in PACKAGES.split(' '):
-        subprocess.call(_PACMAN.split(' ') + [root_mount_point] + [packages])
-    for filesystemtools in FILESYSTEM_TOOLS.split(' '):
-        subprocess.call(_PACMAN.split(' ') + [root_mount_point] + [filesystemtools])
-    for oldbase in OLD_BASE.split(' '):
-        subprocess.call(_PACMAN.split(' ') + [root_mount_point] + [oldbase])
+    extra_packages()
 
     subprocess.call(RSYNC_CMD.split(' ') + [CHROOT_CLEANER_SCRIPT] + [root_mount_point])
     subprocess.call(RSYNC_CMD.split(' ') + [CLEANER_SCRIPT] + [root_mount_point])
