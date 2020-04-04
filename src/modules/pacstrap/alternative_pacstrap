@@ -58,15 +58,16 @@ def update_db():
         pass
     
 def extra_packages():
-    # pacman -Sy PACKAGE -r PATH --dbpath /var/lib/pacman -v -y
     _PACMAN = "/usr/bin/pacman --needed --noconfirm --config /etc/pacman.conf -Sy -r"
-    #_EXTRA_OPTIONS = "-r PATH --dbpath /var/lib/pacman -v -y"
-    PACKAGES = "sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros xterm"
+    PACKAGES = "sudo grub xterm"
+    ENDEAVOUROS = "endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros"
     OLD_BASE = "mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils dhcpcd diffutils inetutils jfsutils less logrotate man-db man-pages mdadm nano netctl perl s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which linux linux-firmware device-mapper"
     FILESYSTEM_TOOLS = "cryptsetup e2fsprogs f2fs-tools btrfs-progs lvm2 reiserfsprogs xfsprogs"
 
     for packages in PACKAGES.split(' '):
         subprocess.call(_PACMAN.split(' ') + [root_mount_point] + [packages])
+    for endeavouros in ENDEAVOUROS.split(' '):
+        subprocess.call(_PACMAN.split(' ') + [root_mount_point] + [endeavouros])
     for filesystemtools in FILESYSTEM_TOOLS.split(' '):
         subprocess.call(_PACMAN.split(' ') + [root_mount_point] + [filesystemtools])
     for oldbase in OLD_BASE.split(' '):
