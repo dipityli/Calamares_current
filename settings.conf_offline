@@ -96,6 +96,7 @@ sequence:
   - partition
   - mount
   - unpackfs
+  - get_root_username
   - copy_kernel
   - machineid
   - fstab

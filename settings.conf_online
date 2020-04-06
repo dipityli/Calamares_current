@@ -97,6 +97,7 @@ sequence:
   - partition
   - mount
   - pacstrap
+  - get_root_username
   - machineid
   - fstab
   - locale
