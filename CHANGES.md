@@ -21,3 +21,13 @@ Is an alternative module that uses pacstrap to install base and pacman to instal
 
 
 The current pacstrap module uses only pacstrap
+
+##########
+
+Following options were changed at settings.conf for all files
+
+prompt-install
+
+disable-cancel-during-exec
+
+quit-at-end
