@@ -17,7 +17,7 @@ Possible new issue: if the repos keep receiving updates the mirrors may be synch
 src/modules/pacstrap/alternative_pacstrap
 
 
-Is an alternative module that uses pacstrap to install base and pacman to install other "essencial packages" listed on the very same module. When running pacman installes package by package, increasing the verbose mode and making easier to detect issues on repo/mirrors/signature
+Is an alternative module that uses pacstrap to install base and pacman to install other "essencial packages" listed on the very same module. pacman installs package by package, increasing verbose mode and making easier to detect issues on repo/mirrors/signature
 
 
 The current pacstrap module uses only pacstrap
