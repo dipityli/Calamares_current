@@ -7,7 +7,7 @@ April
 
 Moved shellprocess module to the last position at settings.conf{_online,_offline} In order to prevent install failure due an error in the script or it's timeout value
 
-ALso implemented scripts module, which is a simple python that calls desired scripts as a replacement for shellprocess
+ALso implemented scripts module, which is a simple python that calls desired bash scripts as a replacement for shellprocess
 
 17
 
