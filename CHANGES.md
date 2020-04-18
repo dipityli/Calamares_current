@@ -3,6 +3,10 @@ list of changes
 # month, day
 April
 
+18
+
+Moved shellprocess module to the last position at settings.conf{_online,_offline} In order to prevent install failure due an error in the script or it's timeout value
+
 17
 
 
