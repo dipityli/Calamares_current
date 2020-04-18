@@ -112,10 +112,10 @@ sequence:
   - networkcfg
   - packages
   - hwclock
-  - shellprocess
   - displaymanager
   - grubcfg
   - bootloader
+  - shellprocess
   - umount
 - show:
   - finished
