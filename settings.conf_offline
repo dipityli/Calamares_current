@@ -189,4 +189,4 @@ disable-cancel-during-exec: false
 # that the end of installation has been reached, and that things are ok.
 #
 #
-quit-at-end: true
+quit-at-end: false
