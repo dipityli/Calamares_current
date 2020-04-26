@@ -18,7 +18,7 @@ def update_db():
     START_HAVEGED = "haveged -w 1024"
     PACMAN_INIT = "pacman-key --init"
     PACMAN_POPULATE = "pacman-key --populate"
-    PACMAN_REFRESH ="pacman-key --refresh-keys --keyserver hkp://ipv4.pool.sks-keyservers.net:11371"
+    PACMAN_REFRESH = "pacman-key --refresh-keys --keyserver hkp://ipv4.pool.sks-keyservers.net:11371"
     STOP_HAVEGED = "pkill haveged"
     BACKUP_MIRROLIST = "cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak"
     #BEST_MIRRORS = "reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist"
