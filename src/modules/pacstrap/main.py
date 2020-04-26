@@ -15,10 +15,11 @@ def update_db():
 
     # Hope is simpler this way
 
+    GNUPG_REMOVE = "rm -rf /etc/pacman.d/gnupg"
     START_HAVEGED = "haveged -w 1024"
     PACMAN_INIT = "pacman-key --init"
     PACMAN_POPULATE = "pacman-key --populate"
-    PACMAN_REFRESH ="pacman-key --refresh-keys"
+    #PACMAN_REFRESH ="pacman-key --refresh-keys"
     STOP_HAVEGED = "pkill haveged"
     BACKUP_MIRROLIST = "cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak"
     #BEST_MIRRORS = "reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist"
@@ -27,10 +28,11 @@ def update_db():
     RANK_MIRRORS = "/usr/bin/update-mirrorlist"
 
     # Update database, step by step in the running iso only. Necessary if running old iso version
+    subprocess.call(GNUPG_REMOVE.split(' '))
     subprocess.call(START_HAVEGED.split(' ')) 
     subprocess.call(PACMAN_INIT.split(' '))  
     subprocess.call(PACMAN_POPULATE.split(' ')) 
-    subprocess.call(PACMAN_REFRESH.split(' '))
+    #subprocess.call(PACMAN_REFRESH.split(' '))
     subprocess.call(STOP_HAVEGED.split(' '))   
     subprocess.call(BACKUP_MIRROLIST.split(' '))  
 
@@ -93,21 +95,4 @@ def run():
 
     subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point])
     subprocess.call(RSYNC_CMD.split(' ') + ["/tmp/run_once"] + [root_mount_point])
-    
-
-
-
-
-    # Moved to cleaner_script.sh
-
-    #PACMAN_HOOKS1 = "/etc/pacman.d/hooks/os-release.hook"
-    #PACMAN_HOOKS2 = "/etc/pacman.d/hooks/lsb-release.hook"
-    #OS_RELEASE = "/etc/os-release"
-    #LSB_RELEASE = "/etc/lsb-release"
-    #GRUB_CONF = "/etc/default/grub"
-
-    #subprocess.call(RSYNC_CMD.split(' ') + [GRUB_CONF] + [root_mount_point])
-    #subprocess.call(RSYNC_CMD.split(' ') + [OS_RELEASE] + [root_mount_point])
-    #subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_HOOKS1] + [root_mount_point])
-    #subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_HOOKS2] + [root_mount_point])
-    #subprocess.call(RSYNC_CMD.split(' ') + [LSB_RELEASE] + [root_mount_point])
+   
