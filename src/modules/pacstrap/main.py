@@ -76,7 +76,7 @@ def run():
 
     PACSTRAP = "/usr/bin/pacstrap_calamares -c"
     PACKAGES = "base sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros xterm"
-    OLD_BASE = "mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils dhcpcd diffutils inetutils jfsutils less logrotate man-db man-pages mdadm nano netctl perl s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which linux linux-firmware device-mapper"
+    OLD_BASE = "mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils diffutils inetutils jfsutils less logrotate man-db man-pages mdadm nano netctl perl s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which linux linux-firmware device-mapper"
     FILESYSTEM_TOOLS = "cryptsetup e2fsprogs f2fs-tools btrfs-progs lvm2 reiserfsprogs xfsprogs"
 
     RSYNC_CMD = "rsync -vaRI"
