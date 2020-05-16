@@ -1,6 +1,14 @@
 list of changes
 
 # month, day
+
+May
+
+16
+
+Merging april branch and pushing calamares to 3.2.24
+
+
 April
 
 22
