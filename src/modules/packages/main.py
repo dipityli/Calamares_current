@@ -278,7 +278,7 @@ class PMPacman(PackageManager):
         if from_local:
             pacman_flags = "-U"
         else:
-            pacman_flags = "-S"
+            pacman_flags = "-Sy"
 
         check_target_env_call(["pacman", pacman_flags, "--needed", "--noconfirm"] + pkgs)
 
