@@ -4,6 +4,10 @@ list of changes
 
 May
 
+17
+
+Adding pacstrap as bash script. Needs testing.
+
 16
 
 Merging april branch and pushing calamares to 3.2.24
