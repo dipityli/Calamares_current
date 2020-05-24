@@ -18,7 +18,8 @@ def update_db():
     START_HAVEGED = "haveged -w 1024"
     PACMAN_INIT = "pacman-key --init"
     PACMAN_POPULATE = "pacman-key --populate"
-    PACMAN_REFRESH = "pacman-key --refresh-keys --keyserver hkp://ipv4.pool.sks-keyservers.net:11371"
+    #PACMAN_REFRESH = "pacman-key --refresh-keys --keyserver hkp://ipv4.pool.sks-keyservers.net:11371"
+    PACMAN_REFRESH = "/usr/bin/rank_pacman_key.sh"
     STOP_HAVEGED = "pkill haveged"
     BACKUP_MIRROLIST = "cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak"
     #BEST_MIRRORS = "reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist"
@@ -30,7 +31,12 @@ def update_db():
     subprocess.call(START_HAVEGED.split(' ')) 
     subprocess.call(PACMAN_INIT.split(' '))  
     subprocess.call(PACMAN_POPULATE.split(' ')) 
-    subprocess.call(PACMAN_REFRESH.split(' '))
+
+    #try:
+    subprocess.call([PACMAN_REFRESH])
+    #except:
+    #    pass
+
     subprocess.call(STOP_HAVEGED.split(' '))   
     subprocess.call(BACKUP_MIRROLIST.split(' '))  
 
@@ -84,6 +90,8 @@ def run():
     CLEANER_SCRIPT = "/usr/bin/cleaner_script.sh"
     PACMAN_CONF = "/etc/pacman.conf"
     PACMAN_MIRRORS = "/etc/pacman.d/mirrorlist"
+    GRUB_CONFIG = "/etc/default/grub" # /etc/default/grub removed from cleaner scripts - last step at calamares
+    # https://forum.endeavouros.com/t/calamares-3-2-24-needs-testing/4941/37
 
     subprocess.call(PACSTRAP.split(' ') + [root_mount_point] + PACKAGES.split(' ') + OLD_BASE.split(' ') + FILESYSTEM_TOOLS.split(' '))
 
@@ -93,4 +101,5 @@ def run():
 
     subprocess.call(RSYNC_CMD.split(' ') + [PACMAN_MIRRORS] + [root_mount_point])
     subprocess.call(RSYNC_CMD.split(' ') + ["/tmp/run_once"] + [root_mount_point])
+    subprocess.call(RSYNC_CMD.split(' ') + [GRUB_CONFIG] + [root_mount_point])
    

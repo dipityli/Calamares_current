@@ -2,6 +2,7 @@
 
 _make_pacstrap_calamares(){
 
+rm -rf /usr/bin/pacstrap_calamares # temporary untill pacstrap_calamares is removed from github
 sed -e '/chroot_add_mount proc/d' -e '/chroot_add_mount sys/d' -e '/ignore_error chroot_maybe_add_mount/d' -e '/chroot_add_mount udev/d' -e '/chroot_add_mount devpts/d' -e '/chroot_add_mount shm/d' -e '/chroot_add_mount \/run/d' -e '/chroot_add_mount tmp/d' -e '/efivarfs \"/d' /usr/bin/pacstrap >/usr/bin/pacstrap_calamares
 chmod +x /usr/bin/pacstrap_calamares
 
@@ -38,9 +39,9 @@ done
 rm -rf $(grep -r "100% packet loss" * |awk '{ print $1 }' | sed 's/:.*//g')
 
 # Unfortunately sometimes generates some type of server door like 2001:470:1:116::6 and pacman-key doesn't work, so need to get the original url again :(
-FOOL=$(grep "time=" * | sort -k8 --version-sort | uniq -u | head -n 1 | awk '{ print $4 }')
+RANK_BEST=$(grep "time=" * | sort -k8 --version-sort | uniq -u | head -n 1 | awk '{ print $4 }')
 
-FINAL=$(grep -n "$FOOL" * |grep "PING" |sed s'/^.*PING //' |sed s'/(.*//')
+FINAL=$(grep -n "$RANK_BEST" * |grep "PING" |sed s'/^.*PING //' |sed s'/(.*//')
 
 pacman-key --refresh-keys --keyserver $FINAL
 
@@ -94,7 +95,7 @@ _chroot_path="cat /tmp/chrootpath.txt"
 
 _pacstrap="/usr/bin/pacstrap_calamares -c" # make a sed config later
 
-_rsync="rsync -vaRI"
+_rsync="rsync -vaRI" # would cp command be less processor consuming or easier for beginners?
 #CHROOT_CLEANER_SCRIPT="/usr/bin/chrooted_cleaner_script.sh"
 #CLEANER_SCRIPT="/usr/bin/cleaner_script.sh"
 _install_scripts="/usr/bin/{chrooted_cleaner_script,cleaner_script}.sh"
@@ -105,6 +106,7 @@ $_pacstrap /tmp/$_chroot_path "${_packages_array[*]}" "${_oldbase_array[*]}" "${
 
 #$RSYNC_CMD $CHROOT_CLEANER_SCRIPT /tmp/$_chroot_path
 #$RSYNC_CMD $CLEANER_SCRIPT /tmp/$_chroot_path
+# do in a single shot later unless is hard for beginners to understand
 $_rsync $_install_scripts /tmp/$_chroot_path
 $_rsync $_pacman_conf /tmp/$_chroot_path
 $_rsync $_pacman_mirrors /tmp/$_chroot_path
