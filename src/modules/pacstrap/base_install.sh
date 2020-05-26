@@ -36,9 +36,10 @@ servers_array=(
 )
 
 rm -rf $TIME.* 
+echo "Checking best key-server, please be patient!"
 for server in "${servers_array[@]}"
 do
-    ping -c 1 $server 2>&1 > $TIME.$server
+    (ping -c 1 $server 2>&1 > $TIME.$server) >/dev/null # Hide failed server output
 done
 
 rm -rf $(grep -r "100% packet loss" * |awk '{ print $1 }' | sed 's/:.*//g')
@@ -48,7 +49,8 @@ RANK_BEST=$(grep "time=" * | sort -k8 --version-sort | uniq -u | head -n 1 | awk
 
 FINAL=$(grep -n "$RANK_BEST" * |grep "PING" |sed s'/^.*PING //' |sed s'/(.*//')
 
-pacman-key --refresh-keys --keyserver $FINAL
+sudo pacman-key --refresh-keys --keyserver $FINAL
+echo -e "\nKeyserver" $FINAL "\n"
 
 }
 
