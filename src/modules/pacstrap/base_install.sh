@@ -110,6 +110,7 @@ _files_to_copy=(
 /etc/pacman.conf
 /etc/pacman.d/mirrorlist
 /tmp/run_once
+/etc/default/grub
 
 )
 
