@@ -4,6 +4,7 @@
 # Just run the script, no aditional config
 
 import subprocess
+import libcalamares
 
 root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
