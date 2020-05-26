@@ -110,7 +110,6 @@ sequence:
   - initcpiocfg
   - initcpio
   # - xfce_theming
-  - removeuser
   - users
   - hwclock
   - displaymanager
