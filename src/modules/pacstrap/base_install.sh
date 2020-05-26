@@ -2,9 +2,14 @@
 
 _make_pacstrap_calamares(){
 
-rm -rf /usr/bin/pacstrap_calamares # temporary untill pacstrap_calamares is removed from github
+if [ ! -f "/usr/bin/pacstrap_calamares" ]
+
+then
+
 sed -e '/chroot_add_mount proc/d' -e '/chroot_add_mount sys/d' -e '/ignore_error chroot_maybe_add_mount/d' -e '/chroot_add_mount udev/d' -e '/chroot_add_mount devpts/d' -e '/chroot_add_mount shm/d' -e '/chroot_add_mount \/run/d' -e '/chroot_add_mount tmp/d' -e '/efivarfs \"/d' /usr/bin/pacstrap >/usr/bin/pacstrap_calamares
 chmod +x /usr/bin/pacstrap_calamares
+
+fi
 
 }
 
@@ -90,32 +95,28 @@ _oldbase_array=( mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils diffutils in
 
 _filesystem_array=( cryptsetup e2fsprogs f2fs-tools btrfs-progs lvm2 reiserfsprogs xfsprogs )
 
-# Stored all commands as strings, hope it helps beginners
-_chroot_path=$(cat /tmp/chrootpath.txt) # this can't be stored as string, sorry beginners :)
+_chroot_path=$(cat /tmp/chrootpath.txt) # can't be stored as string
 
-_pacstrap="/usr/bin/pacstrap_calamares -c" # make a sed config later
-
-_rsync="rsync -vaRI" # would cp command be less processor consuming or easier for beginners?
-#CHROOT_CLEANER_SCRIPT="/usr/bin/chrooted_cleaner_script.sh"
-#CLEANER_SCRIPT="/usr/bin/cleaner_script.sh"
-_install_scripts="/usr/bin/{chrooted_cleaner_script,cleaner_script}.sh"
-_pacman_conf="/etc/pacman.conf"
-_pacman_mirrors="/etc/pacman.d/mirrorlist"
+_pacstrap="/usr/bin/pacstrap_calamares -c"
 
 for pkgs in "${_packages_array[*]}" "${_oldbase_array[*]}" "${_filesystem_array[*]}"
-do $_pacstrap $_chroot_path $pkgs
-    
+do
+    $_pacstrap -c $_chroot_path $pkgs
 done
 
-#$_pacstrap $_chroot_path "${_packages_array[*]}" "${_oldbase_array[*]}" "${_filesystem_array[*]}"
+_files_to_copy=(
 
-#$RSYNC_CMD $CHROOT_CLEANER_SCRIPT /tmp/$_chroot_path
-#$RSYNC_CMD $CLEANER_SCRIPT /tmp/$_chroot_path
-# do in a single shot later unless is hard for beginners to understand
-$_rsync $_install_scripts $_chroot_path
-$_rsync $_pacman_conf $_chroot_path
-$_rsync $_pacman_mirrors $_chroot_path
-$_rsync "/tmp/run_once" $_chroot_path
+/usr/bin/{chrooted_cleaner_script,cleaner_script}.sh
+/etc/pacman.conf
+/etc/pacman.d/mirrorlist
+/tmp/run_once
+
+)
+
+for copy_files in "${_files_to_copy[@]}"
+do
+    rsync -vaRI $copy_files $_chroot_path
+done
 
 }
 
