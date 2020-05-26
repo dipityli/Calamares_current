@@ -49,7 +49,7 @@ RANK_BEST=$(grep "time=" * | sort -k8 --version-sort | uniq -u | head -n 1 | awk
 
 FINAL=$(grep -n "$RANK_BEST" * |grep "PING" |sed s'/^.*PING //' |sed s'/(.*//')
 
-sudo pacman-key --refresh-keys --keyserver $FINAL
+pacman-key --refresh-keys --keyserver $FINAL
 echo -e "\nKeyserver" $FINAL "\n"
 
 }
