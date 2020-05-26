@@ -91,7 +91,7 @@ _oldbase_array=( mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils diffutils in
 _filesystem_array=( cryptsetup e2fsprogs f2fs-tools btrfs-progs lvm2 reiserfsprogs xfsprogs )
 
 # Stored all commands as strings, hope it helps beginners
-_chroot_path="cat /tmp/chrootpath.txt"
+_chroot_path=$(cat /tmp/chrootpath.txt) # this can't be stored as string, sorry beginners :)
 
 _pacstrap="/usr/bin/pacstrap_calamares -c" # make a sed config later
 
@@ -102,15 +102,20 @@ _install_scripts="/usr/bin/{chrooted_cleaner_script,cleaner_script}.sh"
 _pacman_conf="/etc/pacman.conf"
 _pacman_mirrors="/etc/pacman.d/mirrorlist"
 
-$_pacstrap /tmp/$_chroot_path "${_packages_array[*]}" "${_oldbase_array[*]}" "${_filesystem_array[*]}"
+for pkgs in "${_packages_array[*]}" "${_oldbase_array[*]}" "${_filesystem_array[*]}"
+do $_pacstrap $_chroot_path $pkgs
+    
+done
+
+#$_pacstrap $_chroot_path "${_packages_array[*]}" "${_oldbase_array[*]}" "${_filesystem_array[*]}"
 
 #$RSYNC_CMD $CHROOT_CLEANER_SCRIPT /tmp/$_chroot_path
 #$RSYNC_CMD $CLEANER_SCRIPT /tmp/$_chroot_path
 # do in a single shot later unless is hard for beginners to understand
-$_rsync $_install_scripts /tmp/$_chroot_path
-$_rsync $_pacman_conf /tmp/$_chroot_path
-$_rsync $_pacman_mirrors /tmp/$_chroot_path
-$_rsync "/tmp/run_once" /tmp/$_chroot_path
+$_rsync $_install_scripts $_chroot_path
+$_rsync $_pacman_conf $_chroot_path
+$_rsync $_pacman_mirrors $_chroot_path
+$_rsync "/tmp/run_once" $_chroot_path
 
 }
 
