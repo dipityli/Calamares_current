@@ -23,7 +23,7 @@ def run():
     except:
      pass # doing nothing on exception
 
-    SCRIPT_PATH = "/usr/lib/calamares/modules/base_install.sh"
+    SCRIPT_PATH = "/usr/lib/calamares/modules/pacstrap/base_install.sh"
 
 #cleaner_script.sh"
     
