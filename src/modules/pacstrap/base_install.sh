@@ -47,7 +47,11 @@ rm -rf $(grep -r "100% packet loss" * |awk '{ print $1 }' | sed 's/:.*//g')
 # Unfortunately sometimes generates some type of server door like 2001:470:1:116::6 and pacman-key doesn't work, so need to get the original url again :(
 RANK_BEST=$(grep "time=" * | sort -k8 --version-sort | uniq -u | head -n 1 | awk '{ print $4 }')
 
-FINAL=$(grep -n "$RANK_BEST" * |grep "PING" |sed s'/^.*PING //' |sed s'/(.*//')
+# Old version
+# RANK_BEST=$(grep "time=" * | sort -k8 --version-sort | uniq -u | head -n 1 | awk '{ print $4 }')
+# FINAL=$(grep -n "$RANK_BEST" * |grep "PING" |sed s'/^.*PING //' |sed s'/(.*//')
+
+FINAL=$(grep time= $TIME.* | sed 's/ bytes from .* time=/ /' | sort -k2 -V | head -n 1 | sed -e "s/^"$TIME"\.//" -e 's/:.*$//')
 
 pacman-key --refresh-keys --keyserver $FINAL
 echo -e "\nKeyserver" $FINAL "\n"
