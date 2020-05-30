@@ -45,8 +45,6 @@ done
 rm -rf $(grep -r "100% packet loss" * |awk '{ print $1 }' | sed 's/:.*//g')
 
 # Unfortunately sometimes generates some type of server door like 2001:470:1:116::6 and pacman-key doesn't work, so need to get the original url again :(
-RANK_BEST=$(grep "time=" * | sort -k8 --version-sort | uniq -u | head -n 1 | awk '{ print $4 }')
-
 # Old version
 # RANK_BEST=$(grep "time=" * | sort -k8 --version-sort | uniq -u | head -n 1 | awk '{ print $4 }')
 # FINAL=$(grep -n "$RANK_BEST" * |grep "PING" |sed s'/^.*PING //' |sed s'/(.*//')
