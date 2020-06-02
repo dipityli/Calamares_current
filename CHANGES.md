@@ -4,6 +4,11 @@ list of changes
 
 May
 
+26
+
+pacstrap as bash script is implemented at branch "may_2020" and has a compiled version for tests as calamares_test
+
+
 16
 
 Merging april branch and pushing calamares to 3.2.24
