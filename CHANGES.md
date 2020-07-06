@@ -4,10 +4,9 @@ list of changes
 
 May
 
-26
+17
 
-pacstrap as bash script is implemented at branch "may_2020" and has a compiled version for tests as calamares_test
-
+Adding pacstrap as bash script. Needs testing.
 
 16
 
