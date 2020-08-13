@@ -23,6 +23,16 @@ def run():
      subprocess.check_call(["cp", "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz-lts", root_mount_point + "/boot/vmlinuz-linux-lts"])
     except:
      pass # doing nothing on exception
+    # New archiso kernel names
+    try:
+     subprocess.check_call(["cp", "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz-linux", root_mount_point + "/boot/vmlinuz-linux"])
+    except:
+     pass # doing nothing on exception
+    try:
+     subprocess.check_call(["cp", "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz-linux-lts", root_mount_point + "/boot/vmlinuz-linux"])
+    except:
+     pass # doing nothing on exception
+
     # Copy cleaner script for install process
     try:
      subprocess.check_call(["cp", "-f", "/usr/bin/cleaner_script.sh", root_mount_point + "/usr/bin"])
