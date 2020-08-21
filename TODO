@@ -1,0 +1,12 @@
+At PKGBUILD
+
+done - settings.conf
+done - users.conf
+done - packages.conf
+done - grubcfg.conf
+done - packages/main.py
+done - welcome.conf (on,off,line) # may need to add donation url later
+
+TODO - netinstall (standard,nvidia)
+TODO - unpackfs
+
