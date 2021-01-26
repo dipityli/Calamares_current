@@ -10,6 +10,6 @@ then
 
     for pkgs in $(cat $_pkglist)
     do
-        pacman -S $pkgs --noconfirm --needed --root $_chroot_path
+        pacman -Sy $pkgs --noconfirm --needed --root $_chroot_path
     done
 fi
