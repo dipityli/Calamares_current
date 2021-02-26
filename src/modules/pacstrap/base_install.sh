@@ -102,7 +102,7 @@ fi
   
 # Install base system + endeavouros packages + copy necessary config files
 
-_packages_array=( base sudo grub endeavouros-keyring endeavouros-mirrorlist grub2-theme-endeavouros xterm )
+_packages_array=( base sudo grub endeavouros-keyring endeavouros-mirrorlist grub-tools os-prober grub2-theme-endeavouros xterm )
 
 _oldbase_array=( mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils diffutils inetutils jfsutils less logrotate man-db man-pages mdadm nano netctl perl s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which linux linux-firmware device-mapper )
 
