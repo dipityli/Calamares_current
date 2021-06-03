@@ -13,58 +13,6 @@ fi
 
 }
 
-_keyserver(){
-
-local rankapp=/usr/bin/keyserver-rank
-
-if [ -x $rankapp ] ; then
-    $rankapp --yes
-else
-    echo "Warning: $rankapp does not exist, using previous method." >&2
-
-    TIME="time_servers.log"
-    if [ ! -d rank ]; then mkdir rank; fi
-    cd rank
-
-    servers_array=(
-        "keys.openpgp.org"
-        "pgp.mit.edu"
-        "keyring.debian.org"
-        "keyserver.ubuntu.com"
-        "zimmermann.mayfirst.org"
-        "pool.sks-keyservers.net"
-        "na.pool.sks-keyservers.net"
-        "eu.pool.sks-keyservers.net"
-        "oc.pool.sks-keyservers.net"
-        "p80.pool.sks-keyservers.net"
-        "ipv4.pool.sks-keyservers.net"
-        "ipv6.pool.sks-keyservers.net"
-        "subset.pool.sks-keyservers.net"
-    )
-
-    rm -rf $TIME.* 
-    echo "Checking best key-server, please be patient!"
-    for server in "${servers_array[@]}"
-    do
-        (ping -c 1 $server 2>&1 > $TIME.$server) >/dev/null # Hide failed server output
-    done
-
-    rm -rf $(grep -r "100% packet loss" * |awk '{ print $1 }' | sed 's/:.*//g')
-
-    # Unfortunately sometimes generates some type of server door like 2001:470:1:116::6 and pacman-key doesn't work, so need to get the original url again :(
-    # Old version
-    # RANK_BEST=$(grep "time=" * | sort -k8 --version-sort | uniq -u | head -n 1 | awk '{ print $4 }')
-    # FINAL=$(grep -n "$RANK_BEST" * |grep "PING" |sed s'/^.*PING //' |sed s'/(.*//')
-
-    FINAL=$(grep time= $TIME.* | sed 's/ bytes from .* time=/ /' | sort -k2 -V | head -n 1 | sed -e "s/^"$TIME"\.//" -e 's/:.*$//')
-
-    pacman-key --refresh-keys --keyserver $FINAL
-    echo -e "\nKeyserver" $FINAL "\n"
-
-fi
-
-}
-
 _update_db(){
 
 # Update database step by step
@@ -75,7 +23,6 @@ haveged -w 1024
 pacman-key --init
 pkill haveged
 pacman-key --populate
-_keyserver
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
 RANK_MIRRORS="/usr/bin/update-mirrorlist"
