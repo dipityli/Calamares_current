@@ -2,12 +2,12 @@
 
 _make_pacstrap_calamares(){
 
-if [ ! -f "/usr/bin/pacstrap_calamares" ]
+if [ ! -f "/usr/local/bin/pacstrap_calamares" ]
 
 then
 
 sed -e '/chroot_add_mount proc/d' -e '/chroot_add_mount sys/d' -e '/ignore_error chroot_maybe_add_mount/d' -e '/chroot_add_mount udev/d' -e '/chroot_add_mount devpts/d' -e '/chroot_add_mount shm/d' -e '/chroot_add_mount \/run/d' -e '/chroot_add_mount tmp/d' -e '/efivarfs \"/d' /usr/bin/pacstrap >/usr/bin/pacstrap_calamares
-chmod +x /usr/bin/pacstrap_calamares
+chmod +x /usr/local/bin/pacstrap_calamares
 
 fi
 
@@ -25,7 +25,7 @@ pkill haveged
 pacman-key --populate
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
-RANK_MIRRORS="/usr/bin/update-mirrorlist"
+RANK_MIRRORS="/usr/local/bin/update-mirrorlist"
 BEST_MIRRORS="reflector --verbose -a1 -f10 -l70 -phttps --sort rate --save /etc/pacman.d/mirrorlist"
 
 if [ -f $RANK_MIRRORS ]
@@ -57,7 +57,7 @@ _filesystem_array=( cryptsetup e2fsprogs f2fs-tools btrfs-progs lvm2 reiserfspro
 
 _chroot_path=$(cat /tmp/chrootpath.txt) # can't be stored as string
 
-_pacstrap="/usr/bin/pacstrap_calamares -c"
+_pacstrap="/usr/local/bin/pacstrap_calamares -c"
 
 for pkgs in "${_packages_array[*]}" "${_oldbase_array[*]}" "${_filesystem_array[*]}"
 do
@@ -66,7 +66,7 @@ done
 
 _files_to_copy=(
 
-/usr/bin/{chrooted_cleaner_script,cleaner_script}.sh
+/usr/local/bin/{chrooted_cleaner_script,cleaner_script}.sh
 /etc/pacman.conf
 /etc/pacman.d/mirrorlist
 /tmp/run_once
