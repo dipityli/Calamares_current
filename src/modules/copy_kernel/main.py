@@ -35,11 +35,11 @@ def run():
 
     # Copy cleaner script for install process
     try:
-     subprocess.check_call(["cp", "-f", "/usr/local/bin/cleaner_script.sh", root_mount_point + "/usr/local/bin"])
+     subprocess.check_call(["cp", "-f", "/usr/bin/cleaner_script.sh", root_mount_point + "/usr/bin"])
     except:
      pass # doing nothing on exception
     try:
-     subprocess.check_call(["cp", "-f", "/usr/local/bin/chrooted_cleaner_script.sh", root_mount_point + "/usr/local/bin"])
+     subprocess.check_call(["cp", "-f", "/usr/bin/chrooted_cleaner_script.sh", root_mount_point + "/usr/bin"])
     except:
      pass # doing nothing on exception
 
